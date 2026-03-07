@@ -865,22 +865,29 @@ struct WrappedStatCard: View {
                 }
             }
 
-            // Large percentage number with label (end-aligned)
+            // Large value display with label (end-aligned)
             HStack(alignment: .firstTextBaseline) {
-                HStack(alignment: .firstTextBaseline, spacing: 1) {
-                    Text("\(Int(quota.displayPercent(mode: effectiveDisplayMode)))")
+                if let dollarText = quota.formattedDollarRemaining {
+                    Text(dollarText)
                         .font(.system(size: 32, weight: .bold, design: theme.fontDesign))
-                        .foregroundStyle(effectiveDisplayMode == .pace ? paceColor : theme.textPrimary)
+                        .foregroundStyle(theme.textPrimary)
                         .contentTransition(.numericText())
+                } else {
+                    HStack(alignment: .firstTextBaseline, spacing: 1) {
+                        Text("\(Int(quota.displayPercent(mode: effectiveDisplayMode)))")
+                            .font(.system(size: 32, weight: .bold, design: theme.fontDesign))
+                            .foregroundStyle(effectiveDisplayMode == .pace ? paceColor : theme.textPrimary)
+                            .contentTransition(.numericText())
 
-                    Text("%")
-                        .font(.system(size: 16, weight: .medium, design: theme.fontDesign))
-                        .foregroundStyle(effectiveDisplayMode == .pace ? paceColor.opacity(0.7) : theme.textTertiary)
+                        Text("%")
+                            .font(.system(size: 16, weight: .medium, design: theme.fontDesign))
+                            .foregroundStyle(effectiveDisplayMode == .pace ? paceColor.opacity(0.7) : theme.textTertiary)
+                    }
                 }
 
                 Spacer()
 
-                Text(effectiveDisplayMode.displayLabel)
+                Text(quota.isDollarBased ? "remaining" : effectiveDisplayMode.displayLabel)
                     .font(.system(size: 12, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(effectiveDisplayMode == .pace ? paceColor.opacity(0.8) : theme.textTertiary)
             }
