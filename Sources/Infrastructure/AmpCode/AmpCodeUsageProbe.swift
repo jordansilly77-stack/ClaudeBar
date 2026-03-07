@@ -173,10 +173,13 @@ public struct AmpCodeUsageProbe: UsageProbe {
         // Round to 2 decimal places for clean display
         let rounded = (percentRemaining * 100).rounded() / 100
 
+        let resetText = String(format: "$%.2f/$%.2f", remaining, total)
+
         return UsageQuota(
             percentRemaining: rounded,
             quotaType: .modelSpecific(label),
-            providerId: "ampcode"
+            providerId: "ampcode",
+            resetText: resetText
         )
     }
 
