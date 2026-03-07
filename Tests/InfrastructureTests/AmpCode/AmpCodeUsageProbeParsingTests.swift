@@ -193,7 +193,8 @@ struct AmpCodeUsageProbeParsingTests {
         let snapshot = try AmpCodeUsageProbe.parse(text)
 
         // Then
-        if case .modelSpecific(let name) = snapshot.quotas[0].quotaType {
+        let freeQuota = snapshot.quotas.first { $0.quotaType == .modelSpecific("Free") }
+        if let freeQuota, case .modelSpecific(let name) = freeQuota.quotaType {
             #expect(name == "Free")
         } else {
             Issue.record("Expected modelSpecific quota type")
