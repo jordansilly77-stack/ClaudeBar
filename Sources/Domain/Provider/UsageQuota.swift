@@ -58,6 +58,18 @@ public struct UsageQuota: Sendable, Equatable, Hashable, Comparable {
         percentRemaining <= 0
     }
 
+    /// Whether this quota is dollar-based (credit balance with no percentage cap)
+    public var isDollarBased: Bool {
+        dollarRemaining != nil
+    }
+
+    /// Formatted dollar remaining string (e.g., "$50.00"), nil for percentage-based quotas
+    public var formattedDollarRemaining: String? {
+        guard let dollarRemaining else { return nil }
+        let amount = NSDecimalNumber(decimal: dollarRemaining).doubleValue
+        return String(format: "$%.2f", amount)
+    }
+
     /// Whether this quota needs attention (warning, critical, or depleted)
     public var needsAttention: Bool {
         status.needsAttention
