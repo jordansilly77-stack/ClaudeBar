@@ -391,6 +391,7 @@ struct MenuContentView: View {
                     accountCard(displayName: displayName, snapshot: snapshot)
                 }
                 statsGrid(snapshot: snapshot)
+                dailyUsageSection
             }
             .opacity(animateIn ? 1 : 0)
             .animation(.easeOut(duration: 0.5).delay(0.2), value: animateIn)
@@ -553,6 +554,38 @@ struct MenuContentView: View {
             }
         }
         .padding(.top, 4)
+    }
+
+    @ViewBuilder
+    private var dailyUsageSection: some View {
+        if let report = monitor.dailyReport, !report.today.isEmpty {
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(spacing: 5) {
+                    Image(systemName: "chart.bar.fill")
+                        .font(.system(size: 9, weight: .bold))
+                        .foregroundStyle(theme.textSecondary)
+
+                    Text("DAILY USAGE")
+                        .font(.system(size: 8, weight: .semibold, design: theme.fontDesign))
+                        .foregroundStyle(theme.textSecondary)
+                        .tracking(0.5)
+                }
+
+                LazyVGrid(
+                    columns: [
+                        GridItem(.flexible(), spacing: 10),
+                        GridItem(.flexible(), spacing: 10)
+                    ],
+                    spacing: 10
+                ) {
+                    DailyUsageCardView(metric: .cost, report: report, delay: 0)
+                    DailyUsageCardView(metric: .tokens, report: report, delay: 0.08)
+                }
+
+                DailyUsageCardView(metric: .workingTime, report: report, delay: 0.16)
+            }
+            .padding(.top, 4)
+        }
     }
 
     private var loadingState: some View {

@@ -23,6 +23,9 @@ public final class QuotaMonitor: @unchecked Sendable {
     /// Clock for scheduling intervals (injectable for tests)
     private let clock: any Clock
 
+    /// Optional daily usage analyzer for JSONL session data
+    private let dailyUsageAnalyzer: (any DailyUsageAnalyzing)?
+
     /// Previous status for change detection
     private var previousStatuses: [String: QuotaStatus] = [:]
 
@@ -35,6 +38,9 @@ public final class QuotaMonitor: @unchecked Sendable {
     /// The currently selected provider ID (for UI display)
     public var selectedProviderId: String = "claude"
 
+    /// Daily usage report from local JSONL session analysis
+    public private(set) var dailyReport: DailyUsageReport?
+
     // MARK: - Initialization
 
     /// Creates a QuotaMonitor with a provider repository.
@@ -42,11 +48,13 @@ public final class QuotaMonitor: @unchecked Sendable {
     public init(
         providers: any AIProviderRepository,
         alerter: (any QuotaAlerter)? = nil,
-        clock: any Clock
+        clock: any Clock,
+        dailyUsageAnalyzer: (any DailyUsageAnalyzing)? = nil
     ) {
         self.providers = providers
         self.alerter = alerter
         self.clock = clock
+        self.dailyUsageAnalyzer = dailyUsageAnalyzer
         selectFirstEnabledIfNeeded()
     }
 
@@ -60,6 +68,16 @@ public final class QuotaMonitor: @unchecked Sendable {
             for provider in providers.enabled {
                 group.addTask {
                     await self.refreshProvider(provider)
+                }
+            }
+            // Refresh daily usage report concurrently
+            if let analyzer = dailyUsageAnalyzer {
+                group.addTask {
+                    if let report = try? await analyzer.analyzeToday() {
+                        await MainActor.run {
+                            self.dailyReport = report
+                        }
+                    }
                 }
             }
         }

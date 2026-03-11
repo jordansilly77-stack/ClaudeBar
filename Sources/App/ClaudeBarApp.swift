@@ -97,7 +97,8 @@ struct ClaudeBarApp: App {
         // QuotaMonitor automatically validates selected provider on init
         monitor = QuotaMonitor(
             providers: repository,
-            alerter: quotaAlerter
+            alerter: quotaAlerter,
+            dailyUsageAnalyzer: LocalDailyUsageAnalyzer()
         )
         AppLog.monitor.info("QuotaMonitor initialized")
 
