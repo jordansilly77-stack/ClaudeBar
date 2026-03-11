@@ -3,7 +3,7 @@ import Domain
 
 /// Analyzes Claude Code session JSONL files to produce daily usage reports.
 /// Reads from ~/.claude/projects/*/*.jsonl
-public struct LocalDailyUsageAnalyzer: DailyUsageAnalyzing, Sendable {
+public struct ClaudeDailyUsageAnalyzer: DailyUsageAnalyzing, Sendable {
     private let claudeDir: URL
     private let calendar: Calendar
     private let now: @Sendable () -> Date

@@ -4,7 +4,7 @@ import Domain
 @testable import Infrastructure
 
 @Suite
-struct LocalDailyUsageAnalyzerTests {
+struct ClaudeDailyUsageAnalyzerTests {
     /// Creates a temp directory with JSONL files for testing.
     private func setupTempClaudeDir(with jsonlContent: String, fileName: String = "test-session.jsonl") throws -> URL {
         let tmpDir = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
@@ -23,7 +23,7 @@ struct LocalDailyUsageAnalyzerTests {
         let claudeDir = try setupTempClaudeDir(with: jsonl)
         defer { try? FileManager.default.removeItem(at: claudeDir) }
 
-        let analyzer = LocalDailyUsageAnalyzer(claudeDir: claudeDir)
+        let analyzer = ClaudeDailyUsageAnalyzer(claudeDir: claudeDir)
         let report = try await analyzer.analyzeToday()
 
         #expect(report.today.totalTokens == 1500)
@@ -38,7 +38,7 @@ struct LocalDailyUsageAnalyzerTests {
         let claudeDir = try setupTempClaudeDir(with: jsonl)
         defer { try? FileManager.default.removeItem(at: claudeDir) }
 
-        let analyzer = LocalDailyUsageAnalyzer(claudeDir: claudeDir)
+        let analyzer = ClaudeDailyUsageAnalyzer(claudeDir: claudeDir)
         let report = try await analyzer.analyzeToday()
 
         #expect(report.previous.isEmpty)
@@ -50,7 +50,7 @@ struct LocalDailyUsageAnalyzerTests {
         try FileManager.default.createDirectory(at: tmpDir, withIntermediateDirectories: true)
         defer { try? FileManager.default.removeItem(at: tmpDir) }
 
-        let analyzer = LocalDailyUsageAnalyzer(claudeDir: tmpDir)
+        let analyzer = ClaudeDailyUsageAnalyzer(claudeDir: tmpDir)
         let report = try await analyzer.analyzeToday()
 
         #expect(report.today.isEmpty)
@@ -73,7 +73,7 @@ struct LocalDailyUsageAnalyzerTests {
         let claudeDir = try setupTempClaudeDir(with: jsonl)
         defer { try? FileManager.default.removeItem(at: claudeDir) }
 
-        let analyzer = LocalDailyUsageAnalyzer(claudeDir: claudeDir)
+        let analyzer = ClaudeDailyUsageAnalyzer(claudeDir: claudeDir)
         let report = try await analyzer.analyzeToday()
 
         #expect(report.today.totalTokens == 1500)

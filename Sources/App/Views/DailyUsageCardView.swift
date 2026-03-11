@@ -113,25 +113,26 @@ struct DailyUsageCardView: View {
 
     private var formattedDelta: String? {
         guard !report.previous.isEmpty else { return nil }
+        let date = report.previous.formattedDate
         switch metric {
         case .cost:
             let delta = report.formattedCostDelta
             if let pct = report.costChangePercent {
-                return "Vs last cost \(delta) (\(String(format: "%.1f", abs(pct)))%)"
+                return "Vs \(date) \(delta) (\(String(format: "%.1f", abs(pct)))%)"
             }
-            return "Vs last cost \(delta)"
+            return "Vs \(date) \(delta)"
         case .tokens:
             let delta = report.formattedTokenDelta
             if let pct = report.tokenChangePercent {
-                return "Vs last usage \(delta) (\(String(format: "%.1f", abs(pct)))%)"
+                return "Vs \(date) \(delta) (\(String(format: "%.1f", abs(pct)))%)"
             }
-            return "Vs last usage \(delta)"
+            return "Vs \(date) \(delta)"
         case .workingTime:
             let delta = report.formattedTimeDelta
             if let pct = report.timeChangePercent {
-                return "Vs \(report.previous.formattedDate) \(delta) (\(String(format: "%.1f", abs(pct)))%)"
+                return "Vs \(date) \(delta) (\(String(format: "%.1f", abs(pct)))%)"
             }
-            return "Vs \(report.previous.formattedDate) \(delta)"
+            return "Vs \(date) \(delta)"
         }
     }
 
