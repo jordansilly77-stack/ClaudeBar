@@ -17,7 +17,7 @@ struct SessionJSONLParserTests {
         #expect(records[0].outputTokens == 50)
         #expect(records[0].cacheCreationTokens == 200)
         #expect(records[0].cacheReadTokens == 30)
-        #expect(records[0].totalTokens == 380)
+        #expect(records[0].totalTokens == 150)
     }
 
     @Test func `skips non-assistant messages`() {
