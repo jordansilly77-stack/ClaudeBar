@@ -90,6 +90,10 @@ struct ClaudeBarApp: App {
                 probe: MiniMaxUsageProbe(settingsRepository: settingsRepository),
                 settingsRepository: settingsRepository
             ),
+            AlibabaProvider(
+                probe: AlibabaUsageProbe(settingsRepository: settingsRepository),
+                settingsRepository: settingsRepository
+            ),
         ])
         AppLog.providers.info("Created \(repository.all.count) providers")
 
