@@ -396,28 +396,35 @@ struct SettingsContentView: View {
     }
 
     private func providerToggleRow(provider: any AIProvider) -> some View {
-        HStack(spacing: 10) {
-            // Provider icon
-            ProviderIconView(providerId: provider.id, size: 20)
+        VStack(spacing: 4) {
+            HStack(spacing: 10) {
+                // Provider icon
+                ProviderIconView(providerId: provider.id, size: 20)
 
-            Text(provider.name)
-                .font(.system(size: 12, weight: .medium, design: theme.fontDesign))
-                .foregroundStyle(theme.textPrimary)
+                Text(provider.name)
+                    .font(.system(size: 12, weight: .medium, design: theme.fontDesign))
+                    .foregroundStyle(theme.textPrimary)
 
-            Spacer()
+                Spacer()
 
-            Toggle("", isOn: Binding(
-                get: { provider.isEnabled },
-                set: { newValue in
-                    withAnimation(.easeInOut(duration: 0.2)) {
-                        monitor.setProviderEnabled(provider.id, enabled: newValue)
+                Toggle("", isOn: Binding(
+                    get: { provider.isEnabled },
+                    set: { newValue in
+                        withAnimation(.easeInOut(duration: 0.2)) {
+                            monitor.setProviderEnabled(provider.id, enabled: newValue)
+                        }
                     }
-                }
-            ))
-            .toggleStyle(.switch)
-            .tint(theme.accentPrimary)
-            .scaleEffect(0.8)
-            .labelsHidden()
+                ))
+                .toggleStyle(.switch)
+                .tint(theme.accentPrimary)
+                .scaleEffect(0.8)
+                .labelsHidden()
+            }
+
+            if provider.isEnabled {
+                CustomCardURLField(providerId: provider.id)
+                    .padding(.leading, 30)
+            }
         }
         .padding(.vertical, 4)
     }

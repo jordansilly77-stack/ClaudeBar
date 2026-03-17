@@ -574,6 +574,13 @@ struct MenuContentView: View {
                 }
                 DailyUsageCardView(metric: .workingTime, report: report, delay: baseDelay + 0.16)
             }
+
+            // Show custom web card if URL is configured for this provider
+            if let urlString = settings.provider.customCardURL(forProvider: snapshot.providerId),
+               let url = URL(string: urlString) {
+                let cardDelay = Double(snapshot.quotas.count + 2) * 0.08
+                CustomWebCardView(url: url, delay: cardDelay)
+            }
         }
         .padding(.top, 4)
     }
