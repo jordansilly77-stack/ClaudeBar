@@ -4,13 +4,13 @@ import Infrastructure
 
 /// Dynamic settings card for extension providers.
 /// Auto-generates form fields from the extension manifest's config declarations.
+/// Bindings read/write the repository directly — no @State cache.
 struct ExtensionConfigCard: View {
     let provider: ExtensionProvider
     let configRepository: any ExtensionConfigRepository
 
     @Environment(\.appTheme) private var theme
     @State private var configExpanded: Bool = false
-    @State private var fieldValues: [String: String] = [:]
     @State private var secretVisible: [String: Bool] = [:]
 
     private var manifest: ExtensionManifest { provider.manifest }
@@ -52,7 +52,6 @@ struct ExtensionConfigCard: View {
                         )
                 )
         )
-        .onAppear { loadValues() }
     }
 
     // MARK: - Header
@@ -161,11 +160,11 @@ struct ExtensionConfigCard: View {
 
     private func toggleView(for field: ConfigField) -> some View {
         Toggle(isOn: Binding(
-            get: { (fieldValues[field.id] ?? field.defaultValue ?? "false") == "true" },
+            get: {
+                readValue(for: field) == "true"
+            },
             set: { newValue in
-                let stringValue = newValue ? "true" : "false"
-                fieldValues[field.id] = stringValue
-                persistValue(stringValue, for: field)
+                writeValue(newValue ? "true" : "false", for: field)
             }
         )) {
             EmptyView()
@@ -209,27 +208,22 @@ struct ExtensionConfigCard: View {
         )
     }
 
+    /// Binding that reads/writes the repository directly. No @State cache.
     private func binding(for field: ConfigField) -> Binding<String> {
         Binding(
-            get: { fieldValues[field.id] ?? field.defaultValue ?? "" },
-            set: { newValue in
-                fieldValues[field.id] = newValue
-                persistValue(newValue, for: field)
-            }
+            get: { readValue(for: field) },
+            set: { newValue in writeValue(newValue, for: field) }
         )
     }
 
-    private func loadValues() {
-        for field in manifest.configFields {
-            if field.isSecret {
-                fieldValues[field.id] = configRepository.secretValue(forFieldId: field.id, extensionId: extensionId) ?? ""
-            } else {
-                fieldValues[field.id] = configRepository.value(forFieldId: field.id, extensionId: extensionId) ?? field.defaultValue ?? ""
-            }
+    private func readValue(for field: ConfigField) -> String {
+        if field.isSecret {
+            return configRepository.secretValue(forFieldId: field.id, extensionId: extensionId) ?? field.defaultValue ?? ""
         }
+        return configRepository.value(forFieldId: field.id, extensionId: extensionId) ?? field.defaultValue ?? ""
     }
 
-    private func persistValue(_ value: String, for field: ConfigField) {
+    private func writeValue(_ value: String, for field: ConfigField) {
         let storedValue = value.isEmpty ? nil : value
         if field.isSecret {
             configRepository.setSecretValue(storedValue, forFieldId: field.id, extensionId: extensionId)
