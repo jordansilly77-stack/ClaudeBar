@@ -1,11 +1,12 @@
 #!/bin/sh
-# Example daily usage probe - returns today vs previous day comparison
-# Replace with real data (parse logs, query APIs, etc.)
+# Example daily usage probe — uses config values from Settings
+# $CLAUDEBAR_API_KEY and $CLAUDEBAR_BASE_URL are injected automatically
+#
+# Replace with real data:
+#   curl -s -H "Authorization: Bearer $CLAUDEBAR_API_KEY" "$CLAUDEBAR_BASE_URL/daily"
 
-# Get today's and yesterday's dates for realistic output
 TODAY=$(date +%Y-%m-%d)
 YESTERDAY=$(date -v-1d +%Y-%m-%d)
-YESTERDAY_LABEL=$(date -v-1d +"%b %d")
 
 cat <<EOF
 {

@@ -1,14 +1,46 @@
 {
     "id": "example-provider",
     "name": "Example Provider",
-    "version": "1.0.0",
-    "description": "A sample extension showing how to create custom provider cards",
+    "version": "1.1.0",
+    "description": "A sample extension showing config fields, sections, and probe scripts",
     "icon": "cpu.fill",
     "colors": {
         "primary": "#FF6B35",
         "gradient": ["#FF6B35", "#F7C948"]
     },
     "dashboardURL": "https://example.com/usage",
+    "config": [
+        {
+            "id": "apiKey",
+            "label": "API Key",
+            "type": "secret",
+            "required": true,
+            "placeholder": "sk-example-...",
+            "helpText": "Your API key from example.com/settings"
+        },
+        {
+            "id": "baseUrl",
+            "label": "Base URL",
+            "type": "string",
+            "default": "https://api.example.com",
+            "placeholder": "https://api.example.com",
+            "helpText": "Override for self-hosted instances"
+        },
+        {
+            "id": "monthlyBudget",
+            "label": "Monthly Budget",
+            "type": "number",
+            "default": "100",
+            "placeholder": "100.00",
+            "helpText": "USD spending limit for cost tracking"
+        },
+        {
+            "id": "verboseLogging",
+            "label": "Verbose Logging",
+            "type": "toggle",
+            "default": "false"
+        }
+    ],
     "sections": [
         {
             "id": "health",
