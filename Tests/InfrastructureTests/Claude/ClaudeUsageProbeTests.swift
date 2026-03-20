@@ -290,11 +290,11 @@ struct ClaudeUsageProbeTests {
         #expect(snapshot.quotas.count >= 1)
     }
 
-    // MARK: - Account Info Enrichment (via ClaudeAccountInfoResolver)
+    // MARK: - Account Info from ClaudeAccountInfoResolver
 
     @Test
-    func `probe enriches snapshot with config account info when CLI output has no header`() async throws {
-        // Given - new tabbed CLI output (no header line with account info)
+    func `probe resolves account info from config file`() async throws {
+        // Given - new tabbed CLI output (no account info in /usage tab)
         let mockExecutor = MockCLIExecutor()
 
         let tabbedUsageOutput = """
@@ -346,7 +346,7 @@ struct ClaudeUsageProbeTests {
         // When
         let snapshot = try await probe.probe()
 
-        // Then - account info enriched from config file
+        // Then - account info from config, tier from CLI output
         #expect(snapshot.accountEmail == "user@example.com")
         #expect(snapshot.accountOrganization == "testuser")
         #expect(snapshot.quotas.count >= 1)

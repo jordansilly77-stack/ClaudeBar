@@ -106,19 +106,16 @@ public final class ClaudeUsageProbe: UsageProbe, @unchecked Sendable {
         let parseElapsed = CFAbsoluteTimeGetCurrent() - parseStart
         AppLog.probes.debug("Claude parsing took \(String(format: "%.3f", parseElapsed))s")
 
-        // Enrich with account info from config file if CLI didn't provide it
-        let enrichedSnapshot = enrichWithAccountInfo(snapshot)
-
         let totalElapsed = CFAbsoluteTimeGetCurrent() - probeStart
-        AppLog.probes.info("Claude probe success: accountTier=\(enrichedSnapshot.accountTier?.badgeText ?? "unknown"), quotas=\(enrichedSnapshot.quotas.count) (total: \(String(format: "%.3f", totalElapsed))s)")
-        for quota in enrichedSnapshot.quotas {
+        AppLog.probes.info("Claude probe success: accountTier=\(snapshot.accountTier?.badgeText ?? "unknown"), quotas=\(snapshot.quotas.count) (total: \(String(format: "%.3f", totalElapsed))s)")
+        for quota in snapshot.quotas {
             AppLog.probes.info("  - \(quota.quotaType.displayName): \(Int(quota.percentRemaining))% remaining")
         }
-        if let cost = enrichedSnapshot.costUsage {
+        if let cost = snapshot.costUsage {
             AppLog.probes.info("  - Extra usage: \(cost.formattedCost) / \(cost.formattedBudget ?? "N/A")")
         }
 
-        return enrichedSnapshot
+        return snapshot
     }
 
     /// Probes using /cost command for API Usage Billing accounts
@@ -280,13 +277,13 @@ public final class ClaudeUsageProbe: UsageProbe, @unchecked Sendable {
         }
 
         // Detect account type from header (e.g., "Opus 4.5 · Claude Max" or "Opus 4.5 · Claude Pro")
-        let accountType = detectAccountType(clean)
-        let email = extractEmail(text: clean)
-        let organization = extractOrganization(text: clean)
-        let loginMethod = extractLoginMethod(text: clean)
+        let accountTier = detectAccountType(clean)
+        // Account info (email, org) comes from ~/.claude.json via resolver
+        // CLI /usage tab no longer includes account details since v2.1.79+
+        let accountInfo = accountInfoResolver.resolve()
 
         // API Usage Billing accounts don't have quota data - fall back to /cost
-        if accountType == .claudeApi {
+        if accountTier == .claudeApi {
             AppLog.probes.info("Detected API Usage Billing account, falling back to /cost")
             throw ProbeError.subscriptionRequired
         }
@@ -360,10 +357,10 @@ public final class ClaudeUsageProbe: UsageProbe, @unchecked Sendable {
             providerId: "claude",
             quotas: quotas,
             capturedAt: Date(),
-            accountEmail: email,
-            accountOrganization: organization,
-            loginMethod: loginMethod,
-            accountTier: accountType,
+            accountEmail: accountInfo?.email,
+            accountOrganization: accountInfo?.organization,
+            loginMethod: accountInfo?.loginMethod,
+            accountTier: accountTier,
             costUsage: extraUsage
         )
     }
@@ -928,36 +925,6 @@ public final class ClaudeUsageProbe: UsageProbe, @unchecked Sendable {
             AppLog.probes.error("Failed to write trust to \(claudeJsonURL.path): \(error.localizedDescription)")
             return false
         }
-    }
-
-    // MARK: - Account Info Enrichment
-
-    /// Enriches a snapshot with account info from `~/.claude.json` when CLI output didn't provide it.
-    internal func enrichWithAccountInfo(_ snapshot: UsageSnapshot) -> UsageSnapshot {
-        // Only enrich if CLI parsing didn't get account info
-        guard snapshot.accountEmail == nil, snapshot.accountOrganization == nil else {
-            return snapshot
-        }
-
-        guard let accountInfo = accountInfoResolver.resolve() else {
-            return snapshot
-        }
-
-        AppLog.probes.info("Enriching snapshot with account info from ~/.claude.json (email=\(accountInfo.email != nil ? "yes" : "no"), org=\(accountInfo.organization ?? "nil"))")
-
-        return UsageSnapshot(
-            providerId: snapshot.providerId,
-            quotas: snapshot.quotas,
-            capturedAt: snapshot.capturedAt,
-            accountEmail: accountInfo.email,
-            accountOrganization: accountInfo.organization,
-            loginMethod: snapshot.loginMethod,
-            accountTier: snapshot.accountTier,
-            costUsage: snapshot.costUsage,
-            bedrockUsage: snapshot.bedrockUsage,
-            dailyUsageReport: snapshot.dailyUsageReport,
-            extensionMetrics: snapshot.extensionMetrics
-        )
     }
 
     internal func probeWorkingDirectory() -> URL {
