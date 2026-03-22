@@ -903,9 +903,382 @@
     50% { opacity: 0.7; transform: translateX(4px); }
   }
 
+  /* ── ADD ACCOUNT JOURNEY ── */
+
+  .journey-section {
+    width: 100%;
+    margin-top: 20px;
+    opacity: 0;
+    animation: labelIn 0.8s ease 0.3s forwards;
+  }
+  .journey-title {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent-pink);
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .journey-title::before {
+    content: '◆ ';
+    color: var(--accent-purple);
+  }
+
+  .journey-flow {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .journey-step {
+    width: 280px;
+    flex-shrink: 0;
+    opacity: 0;
+    animation: popoverIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .journey-step:nth-child(1) { animation-delay: 0.4s; }
+  .journey-step:nth-child(2) { animation-delay: 0.55s; }
+  .journey-step:nth-child(3) { animation-delay: 0.7s; }
+  .journey-step:nth-child(4) { animation-delay: 0.85s; }
+  .journey-step:nth-child(5) { animation-delay: 1.0s; }
+
+  .step-number {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .step-badge {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--accent-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+  .step-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .step-card {
+    border-radius: var(--card-radius);
+    background: linear-gradient(165deg, var(--bg-deep) 0%, var(--bg-mid) 100%);
+    border: 1px solid rgba(255,255,255,0.12);
+    overflow: hidden;
+    box-shadow:
+      0 12px 30px rgba(0,0,0,0.4),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .step-content {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Journey arrow between steps */
+  .journey-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    font-size: 18px;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+    opacity: 0;
+    animation: cardIn 0.5s ease 0.6s forwards;
+    padding-top: 30px;
+  }
+
+  /* Form elements */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .form-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+  .form-input {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.05);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    outline: none;
+    transition: all 0.15s ease;
+  }
+  .form-input:focus {
+    border-color: rgba(140,82,218,0.6);
+    background: rgba(140,82,218,0.06);
+    box-shadow: 0 0 0 2px rgba(140,82,218,0.15);
+  }
+  .form-input::placeholder {
+    color: var(--text-tertiary);
+    font-weight: 400;
+  }
+  .form-input.filled {
+    border-color: rgba(90,235,174,0.3);
+    background: rgba(90,235,174,0.04);
+  }
+  .form-hint {
+    font-size: 8px;
+    color: var(--text-tertiary);
+    font-style: italic;
+  }
+
+  /* Probe type selector */
+  .probe-options {
+    display: flex;
+    gap: 6px;
+  }
+  .probe-option {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s ease;
+  }
+  .probe-option:hover {
+    border-color: rgba(255,255,255,0.25);
+    background: var(--hover-overlay);
+  }
+  .probe-option.selected {
+    border-color: rgba(140,82,218,0.5);
+    background: rgba(140,82,218,0.12);
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  .probe-option-icon {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  /* Verification status */
+  .verify-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.03);
+  }
+  .verify-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(140,82,218,0.2);
+    border-top-color: var(--accent-purple);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    flex-shrink: 0;
+  }
+  .verify-check {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--status-healthy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: white;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .verify-fail {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--status-critical);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: white;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .verify-text {
+    font-size: 10px;
+    color: var(--text-secondary);
+  }
+  .verify-text strong {
+    color: var(--status-healthy);
+  }
+  .verify-text .fail {
+    color: var(--status-critical);
+  }
+
+  /* Action buttons */
+  .step-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .btn-primary {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    background: var(--accent-gradient);
+    color: white;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: center;
+  }
+  .btn-primary:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(140,82,218,0.4);
+  }
+  .btn-primary:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  .btn-secondary {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .btn-secondary:hover {
+    border-color: rgba(255,255,255,0.3);
+    color: var(--text-primary);
+  }
+
+  /* Success state card */
+  .success-card {
+    text-align: center;
+    padding: 20px 16px;
+  }
+  .success-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+  .success-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .success-sub {
+    font-size: 10px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+  .success-account-preview {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(90,235,174,0.2);
+    margin-bottom: 12px;
+  }
+  .success-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(90,235,174,0.2);
+    color: var(--status-healthy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .success-info {
+    text-align: left;
+    flex: 1;
+  }
+  .success-name {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .success-email {
+    font-size: 9px;
+    color: var(--text-tertiary);
+    margin-top: 1px;
+  }
+  .success-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--status-healthy);
+    box-shadow: 0 0 8px rgba(90,235,174,0.5);
+  }
+
+  /* Color picker for avatar */
+  .color-picker {
+    display: flex;
+    gap: 6px;
+    padding: 2px 0;
+  }
+  .color-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.15s ease;
+  }
+  .color-swatch:hover {
+    transform: scale(1.15);
+  }
+  .color-swatch.selected {
+    border-color: white;
+    box-shadow: 0 0 8px rgba(255,255,255,0.3);
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
   /* Responsive */
   @media (max-width: 920px) {
     .flow-connector { display: none; }
+    .journey-arrow { display: none; }
     .design-canvas { flex-direction: column; align-items: center; }
   }
 </style>
@@ -1194,6 +1567,192 @@
     </div>
   </div>
 
+  <!-- ═══ ADD ACCOUNT JOURNEY ═══ -->
+  <div class="journey-section">
+    <div class="journey-title">Add Account Journey — Step by Step</div>
+
+    <div class="journey-flow">
+
+      <!-- Step 1: Click Add Account -->
+      <div class="journey-step">
+        <div class="step-number">
+          <div class="step-badge">1</div>
+          <span class="step-label">Tap "Add Account"</span>
+        </div>
+        <div class="step-card">
+          <div class="step-content">
+            <div style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+              User clicks the dashed <strong style="color:var(--accent-purple)">+ Add Account</strong> button in the Account Management card within Settings.
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:10px;border-radius:8px;background:rgba(140,82,218,0.06);border:1px dashed rgba(140,82,218,0.3)">
+              <span style="font-size:14px;color:var(--accent-purple)">⊕</span>
+              <span style="font-size:11px;font-weight:500;color:var(--accent-purple)">Add Account</span>
+            </div>
+            <div class="annotation" style="margin-top:8px;opacity:1;animation:none;padding:8px 10px">
+              <strong>Trigger:</strong> Inline within SettingsContentView. Opens a sheet/popover with the add-account form.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-arrow">→</div>
+
+      <!-- Step 2: Account Details Form -->
+      <div class="journey-step">
+        <div class="step-number">
+          <div class="step-badge">2</div>
+          <span class="step-label">Account Details</span>
+        </div>
+        <div class="step-card">
+          <div class="step-content">
+            <div class="form-group">
+              <span class="form-label">Account Label</span>
+              <input class="form-input filled" type="text" value="Freelance" readonly>
+            </div>
+            <div class="form-group">
+              <span class="form-label">Email (optional)</span>
+              <input class="form-input filled" type="text" value="henry@freelance.io" readonly>
+            </div>
+            <div class="form-group">
+              <span class="form-label">Organization (optional)</span>
+              <input class="form-input" type="text" placeholder="e.g., Acme Corp" readonly>
+            </div>
+            <div class="form-group">
+              <span class="form-label">Avatar Color</span>
+              <div class="color-picker">
+                <div class="color-swatch" style="background:rgba(140,82,218,0.7)"></div>
+                <div class="color-swatch" style="background:rgba(218,90,166,0.7)"></div>
+                <div class="color-swatch selected" style="background:rgba(90,235,174,0.6)"></div>
+                <div class="color-swatch" style="background:rgba(250,184,90,0.6)"></div>
+                <div class="color-swatch" style="background:rgba(100,160,255,0.6)"></div>
+              </div>
+            </div>
+            <div class="step-actions">
+              <button class="btn-secondary">Cancel</button>
+              <button class="btn-primary">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-arrow">→</div>
+
+      <!-- Step 3: Probe Configuration -->
+      <div class="journey-step">
+        <div class="step-number">
+          <div class="step-badge">3</div>
+          <span class="step-label">Probe Config</span>
+        </div>
+        <div class="step-card">
+          <div class="step-content">
+            <div style="font-size:10px;color:var(--text-tertiary);margin-bottom:2px">
+              How should ClaudeBar fetch quota for this account?
+            </div>
+            <div class="probe-options">
+              <div class="probe-option selected" onclick="selectProbe(this)">
+                <span class="probe-option-icon">⌨</span>
+                CLI Profile
+              </div>
+              <div class="probe-option" onclick="selectProbe(this)">
+                <span class="probe-option-icon">🔑</span>
+                API Token
+              </div>
+            </div>
+            <div id="probeConfigFields">
+              <div class="form-group">
+                <span class="form-label">CLI Profile Name</span>
+                <input class="form-input filled" type="text" value="freelance" readonly>
+                <span class="form-hint">Matches `claude --profile freelance`</span>
+              </div>
+            </div>
+            <div class="step-actions">
+              <button class="btn-secondary">Back</button>
+              <button class="btn-primary">Verify & Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-arrow">→</div>
+
+      <!-- Step 4: Verification -->
+      <div class="journey-step">
+        <div class="step-number">
+          <div class="step-badge">4</div>
+          <span class="step-label">Verify</span>
+        </div>
+        <div class="step-card">
+          <div class="step-content">
+            <div style="font-size:10px;color:var(--text-tertiary);margin-bottom:4px">
+              Probing account to verify connectivity...
+            </div>
+
+            <div class="verify-row">
+              <div class="verify-check">✓</div>
+              <span class="verify-text"><strong>CLI found</strong> — claude binary at /usr/local/bin/claude</span>
+            </div>
+            <div class="verify-row">
+              <div class="verify-check">✓</div>
+              <span class="verify-text"><strong>Profile valid</strong> — "freelance" profile exists</span>
+            </div>
+            <div class="verify-row">
+              <div class="verify-check">✓</div>
+              <span class="verify-text"><strong>Authenticated</strong> — henry@freelance.io</span>
+            </div>
+            <div class="verify-row">
+              <div class="verify-spinner"></div>
+              <span class="verify-text">Fetching initial quota snapshot...</span>
+            </div>
+
+            <div class="step-actions">
+              <button class="btn-secondary">Back</button>
+              <button class="btn-primary" disabled>Adding...</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-arrow">→</div>
+
+      <!-- Step 5: Success -->
+      <div class="journey-step">
+        <div class="step-number">
+          <div class="step-badge">5</div>
+          <span class="step-label">Done</span>
+        </div>
+        <div class="step-card">
+          <div class="step-content success-card">
+            <div class="success-icon">🎉</div>
+            <div class="success-title">Account Added</div>
+            <div class="success-sub">Now monitoring quota for this account</div>
+
+            <div class="success-account-preview">
+              <div class="success-avatar">F</div>
+              <div class="success-info">
+                <div class="success-name">Freelance</div>
+                <div class="success-email">henry@freelance.io</div>
+              </div>
+              <div class="success-status-dot"></div>
+            </div>
+
+            <button class="btn-primary" style="width:100%">Done</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Journey annotation -->
+    <div class="annotation" style="max-width:700px;margin:24px auto 0;opacity:1;animation:none">
+      <strong>Add Account flow:</strong>
+      1. User taps dashed button → 2. Enters label, email, avatar color → 3. Configures probe (CLI profile or API token from <strong>probeConfig</strong>) →
+      4. ClaudeBar verifies connectivity and fetches initial snapshot → 5. Account appears in parallel monitoring view.
+      <br><br>
+      <strong>Error path:</strong> If verification fails at step 4 (e.g., invalid profile, expired token), user sees a red ✗ with retry option.
+      Account is saved as <strong>Unreachable</strong> with "Re-auth" tag if user chooses to add anyway.
+    </div>
+  </div>
+
 </div>
 
 <script>
@@ -1218,6 +1777,39 @@
     pill.addEventListener('click', () => {
       document.querySelectorAll('.provider-pill').forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
+    });
+  });
+
+  // Probe type selector
+  function selectProbe(el) {
+    el.parentElement.querySelectorAll('.probe-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    const isCliSelected = el.textContent.includes('CLI');
+    const fields = document.getElementById('probeConfigFields');
+    if (isCliSelected) {
+      fields.innerHTML = `
+        <div class="form-group">
+          <span class="form-label">CLI Profile Name</span>
+          <input class="form-input filled" type="text" value="freelance" readonly>
+          <span class="form-hint">Matches \`claude --profile freelance\`</span>
+        </div>
+      `;
+    } else {
+      fields.innerHTML = `
+        <div class="form-group">
+          <span class="form-label">API Token Env Var</span>
+          <input class="form-input" type="text" placeholder="e.g., CLAUDE_FREELANCE_TOKEN" readonly>
+          <span class="form-hint">Environment variable holding the API key</span>
+        </div>
+      `;
+    }
+  }
+
+  // Color swatch selection
+  document.querySelectorAll('.color-swatch').forEach(swatch => {
+    swatch.addEventListener('click', () => {
+      swatch.parentElement.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
+      swatch.classList.add('selected');
     });
   });
 </script>
