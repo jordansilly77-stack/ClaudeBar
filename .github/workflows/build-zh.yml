@@ -1,0 +1,46 @@
+name: Build Chinese Localized ClaudeBar
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Tuist
+        run: brew install tuist
+
+      - name: Install dependencies
+        run: tuist install
+
+      - name: Generate project
+        run: tuist generate --no-open
+
+      - name: Build Release
+        run: |
+          xcodebuild build \
+            -workspace ClaudeBar.xcworkspace \
+            -scheme ClaudeBar \
+            -configuration Release \
+            -derivedDataPath build \
+            CODE_SIGN_IDENTITY="-" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            ONLY_ACTIVE_ARCH=NO \
+            | tail -20
+
+      - name: Package app
+        run: |
+          APP_PATH=$(find build -name "ClaudeBar.app" -type d | head -1)
+          echo "Found app at: $APP_PATH"
+          cd "$(dirname "$APP_PATH")"
+          zip -r "$GITHUB_WORKSPACE/ClaudeBar-zh.zip" ClaudeBar.app
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ClaudeBar-zh
+          path: ClaudeBar-zh.zip
+          retention-days: 7
