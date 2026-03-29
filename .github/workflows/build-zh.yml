@@ -26,6 +26,9 @@ jobs:
       - name: Generate project
         run: tuist generate --no-open
 
+      - name: Fix SwiftTerm Metal duplicate
+        run: bash scripts/fix-swiftterm-metal.sh
+
       - name: Build Release
         run: |
           xcodebuild build \
