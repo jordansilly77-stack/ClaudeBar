@@ -9,11 +9,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Select latest Xcode
+        run: |
+          ls /Applications/Xcode*.app
+          sudo xcode-select -s "$(ls -d /Applications/Xcode*.app | sort -V | tail -1)"
+          xcodebuild -version
+          swift --version
+
       - name: Install Tuist
         run: brew install tuist
 
       - name: Install dependencies
         run: tuist install
+        timeout-minutes: 15
 
       - name: Generate project
         run: tuist generate --no-open
@@ -29,7 +37,23 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO \
             ONLY_ACTIVE_ARCH=NO \
-            | tail -20
+            | xcpretty || true
+          # Fallback: check build result directly
+          APP_PATH=$(find build -name "ClaudeBar.app" -type d | head -1)
+          if [ -z "$APP_PATH" ]; then
+            echo "Build failed - no app found"
+            xcodebuild build \
+              -workspace ClaudeBar.xcworkspace \
+              -scheme ClaudeBar \
+              -configuration Release \
+              -derivedDataPath build \
+              CODE_SIGN_IDENTITY="-" \
+              CODE_SIGNING_REQUIRED=NO \
+              CODE_SIGNING_ALLOWED=NO \
+              ONLY_ACTIVE_ARCH=NO 2>&1 | tail -50
+            exit 1
+          fi
+        timeout-minutes: 20
 
       - name: Package app
         run: |
