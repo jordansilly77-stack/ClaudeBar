@@ -11,10 +11,8 @@ jobs:
 
       - name: Select latest Xcode
         run: |
-          ls /Applications/Xcode*.app
           sudo xcode-select -s "$(ls -d /Applications/Xcode*.app | sort -V | tail -1)"
           xcodebuild -version
-          swift --version
 
       - name: Install Tuist
         run: brew install tuist
@@ -31,37 +29,46 @@ jobs:
 
       - name: Build Release
         run: |
+          set -e
           xcodebuild build \
             -workspace ClaudeBar.xcworkspace \
             -scheme ClaudeBar \
             -configuration Release \
             -derivedDataPath build \
+            -destination "platform=macOS,arch=arm64" \
             CODE_SIGN_IDENTITY="-" \
             CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO \
-            ONLY_ACTIVE_ARCH=NO \
-            | xcpretty || true
-          # Fallback: check build result directly
-          APP_PATH=$(find build -name "ClaudeBar.app" -type d | head -1)
-          if [ -z "$APP_PATH" ]; then
-            echo "Build failed - no app found"
-            xcodebuild build \
-              -workspace ClaudeBar.xcworkspace \
-              -scheme ClaudeBar \
-              -configuration Release \
-              -derivedDataPath build \
-              CODE_SIGN_IDENTITY="-" \
-              CODE_SIGNING_REQUIRED=NO \
-              CODE_SIGNING_ALLOWED=NO \
-              ONLY_ACTIVE_ARCH=NO 2>&1 | tail -50
+            CODE_SIGNING_ALLOWED=YES \
+            2>&1 | tee /tmp/build.log | tail -30
+
+          # Verify the build succeeded
+          if ! grep -q "BUILD SUCCEEDED" /tmp/build.log; then
+            echo "BUILD FAILED"
+            tail -100 /tmp/build.log
             exit 1
           fi
         timeout-minutes: 20
 
       - name: Package app
         run: |
-          APP_PATH=$(find build -name "ClaudeBar.app" -type d | head -1)
-          echo "Found app at: $APP_PATH"
+          set -e
+          APP_PATH="build/Build/Products/Release/ClaudeBar.app"
+
+          # Verify binary exists
+          if [ ! -f "$APP_PATH/Contents/MacOS/ClaudeBar" ]; then
+            echo "Binary not found at expected path, searching..."
+            find build -name "ClaudeBar" -type f | head -10
+            find build -name "ClaudeBar.app" -type d | head -5
+            APP_PATH=$(find build -name "ClaudeBar.app" -type d -path "*/Release/*" | head -1)
+          fi
+
+          echo "App path: $APP_PATH"
+          echo "Binary: $(file "$APP_PATH/Contents/MacOS/ClaudeBar")"
+          echo "Info.plist: $(ls -la "$APP_PATH/Contents/Info.plist")"
+
+          # Ad-hoc sign
+          codesign --force --deep --sign - "$APP_PATH"
+
           cd "$(dirname "$APP_PATH")"
           zip -r "$GITHUB_WORKSPACE/ClaudeBar-zh.zip" ClaudeBar.app
 
