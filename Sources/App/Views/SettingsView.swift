@@ -187,11 +187,11 @@ struct SettingsContentView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Appearance")
+                    Text("外观")
                         .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                         .foregroundStyle(theme.textPrimary)
 
-                    Text("Choose your theme")
+                    Text("选择主题")
                         .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                         .foregroundStyle(theme.textTertiary)
                 }
@@ -259,11 +259,11 @@ struct SettingsContentView: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Quota Display")
+                Text("配额显示")
                     .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                     .foregroundStyle(theme.textPrimary)
 
-                Text("Show remaining or used percentage")
+                Text("显示剩余或已用百分比")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -289,7 +289,7 @@ struct SettingsContentView: View {
 
     private var dailyUsageCardsToggle: some View {
         HStack {
-            Text("Daily Usage Cards")
+            Text("每日用量卡片")
                 .font(.system(size: 12, weight: .medium, design: theme.fontDesign))
                 .foregroundStyle(theme.textSecondary)
 
@@ -318,11 +318,11 @@ struct SettingsContentView: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Overview")
+                Text("总览")
                     .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                     .foregroundStyle(theme.textPrimary)
 
-                Text("Show all providers at once")
+                Text("同时显示所有服务商")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -399,11 +399,11 @@ struct SettingsContentView: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Providers")
+                Text("服务商")
                     .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                     .foregroundStyle(theme.textPrimary)
 
-                Text("Enable or disable AI providers")
+                Text("启用或禁用 AI 服务商")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -457,7 +457,7 @@ struct SettingsContentView: View {
                 HStack(spacing: 4) {
                     Image(systemName: "chevron.left")
                         .font(.system(size: 10, weight: .bold))
-                    Text("Back")
+                    Text("返回")
                         .font(.system(size: 11, weight: .medium, design: theme.fontDesign))
                 }
                 .foregroundStyle(theme.textPrimary)
@@ -476,7 +476,7 @@ struct SettingsContentView: View {
 
             Spacer()
 
-            Text("Settings")
+            Text("设置")
                 .font(.system(size: 16, weight: .bold, design: theme.fontDesign))
                 .foregroundStyle(theme.textPrimary)
 
@@ -508,7 +508,7 @@ struct SettingsContentView: View {
                                     .font(.system(size: 11, weight: .semibold))
                             }
 
-                            Text(sparkleUpdater?.isCheckingForUpdates == true ? "Checking..." : "Check for Updates")
+                            Text(sparkleUpdater?.isCheckingForUpdates == true ? "检查中…" : "检查更新")
                                 .font(.system(size: 11, weight: .medium, design: theme.fontDesign))
                         }
                         .foregroundStyle(.white)
@@ -538,14 +538,14 @@ struct SettingsContentView: View {
                             Image(systemName: "clock.fill")
                                 .font(.system(size: 8))
 
-                            Text("Last checked: \(lastCheck.formatted(date: .abbreviated, time: .shortened))")
+                            Text("上次检查: \(lastCheck.formatted(date: .abbreviated, time: .shortened))")
                                 .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                         }
                         .foregroundStyle(theme.textTertiary)
                     }
 
                     HStack {
-                        Text("Check automatically")
+                        Text("自动检查")
                             .font(.system(size: 11, weight: .medium, design: theme.fontDesign))
                             .foregroundStyle(theme.textPrimary)
 
@@ -563,11 +563,11 @@ struct SettingsContentView: View {
 
                     HStack {
                         VStack(alignment: .leading, spacing: 2) {
-                            Text("Include beta versions")
+                            Text("包含测试版")
                                 .font(.system(size: 11, weight: .medium, design: theme.fontDesign))
                                 .foregroundStyle(theme.textPrimary)
 
-                            Text("Get early access to new features")
+                            Text("抢先体验新功能")
                                 .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                                 .foregroundStyle(theme.textTertiary)
                         }
@@ -584,7 +584,7 @@ struct SettingsContentView: View {
                     HStack(spacing: 6) {
                         Image(systemName: "hammer.fill")
                             .font(.system(size: 10))
-                        Text("Updates unavailable in debug builds")
+                        Text("调试版本无法更新")
                             .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     }
                     .foregroundStyle(theme.textTertiary)
@@ -639,11 +639,11 @@ struct SettingsContentView: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Updates")
+                Text("更新")
                     .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                     .foregroundStyle(theme.textPrimary)
 
-                Text("Version \(appVersion)")
+                Text("版本 \(appVersion)")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -689,11 +689,11 @@ struct SettingsContentView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Logs")
+                    Text("日志")
                         .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                         .foregroundStyle(theme.textPrimary)
 
-                    Text("View application logs")
+                    Text("查看应用日志")
                         .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                         .foregroundStyle(theme.textTertiary)
                 }
@@ -708,7 +708,7 @@ struct SettingsContentView: View {
                     Image(systemName: "doc.text")
                         .font(.system(size: 11, weight: .semibold))
 
-                    Text("Open Log File")
+                    Text("打开日志文件")
                         .font(.system(size: 11, weight: .medium, design: theme.fontDesign))
                 }
                 .foregroundStyle(.white)
@@ -731,7 +731,7 @@ struct SettingsContentView: View {
             }
             .buttonStyle(.plain)
 
-            Text("Opens ClaudeBar.log in TextEdit")
+            Text("在 TextEdit 中打开 ClaudeBar.log")
                 .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                 .foregroundStyle(theme.textTertiary)
         }
@@ -769,11 +769,11 @@ struct SettingsContentView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("About")
+                    Text("关于")
                         .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                         .foregroundStyle(theme.textPrimary)
 
-                    Text("Version \(appVersion) (\(appBuild))")
+                    Text("版本 \(appVersion) (\(appBuild))")
                         .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                         .foregroundStyle(theme.textTertiary)
                 }
@@ -786,7 +786,7 @@ struct SettingsContentView: View {
                     Image(systemName: "link")
                         .font(.system(size: 11, weight: .semibold))
 
-                    Text("View on GitHub")
+                    Text("在 GitHub 上查看")
                         .font(.system(size: 11, weight: .medium, design: theme.fontDesign))
 
                     Spacer()
@@ -813,7 +813,7 @@ struct SettingsContentView: View {
             }
             .buttonStyle(.plain)
 
-            Text("Report issues or contribute on GitHub")
+            Text("在 GitHub 上报告问题或参与贡献")
                 .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                 .foregroundStyle(theme.textTertiary)
         }
@@ -859,11 +859,11 @@ struct SettingsContentView: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Launch at Login")
+                Text("登录时启动")
                     .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                     .foregroundStyle(theme.textPrimary)
 
-                Text("Start ClaudeBar when you log in")
+                Text("登录时自动启动 ClaudeBar")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -897,22 +897,22 @@ struct SettingsContentView: View {
 
             VStack(alignment: .leading, spacing: 14) {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("SYNC INTERVAL")
+                    Text("同步间隔")
                         .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                         .foregroundStyle(theme.textSecondary)
                         .tracking(0.5)
 
                     Picker("", selection: $settings.backgroundSyncInterval) {
-                        Text("30 seconds").tag(30.0)
-                        Text("1 minute").tag(60.0)
-                        Text("2 minutes").tag(120.0)
-                        Text("5 minutes").tag(300.0)
+                        Text("30 秒").tag(30.0)
+                        Text("1 分钟").tag(60.0)
+                        Text("2 分钟").tag(120.0)
+                        Text("5 分钟").tag(300.0)
                     }
                     .pickerStyle(.segmented)
                     .disabled(!settings.backgroundSyncEnabled)
                 }
 
-                Text("Sync usage data in the background so it's always fresh when you check.")
+                Text("在后台同步用量数据，确保查看时始终是最新的。")
                     .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -959,11 +959,11 @@ struct SettingsContentView: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Background Sync")
+                Text("后台同步")
                     .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                     .foregroundStyle(theme.textPrimary)
 
-                Text("Keep data fresh automatically")
+                Text("自动保持数据最新")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -994,11 +994,11 @@ struct SettingsContentView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Burn Rate Warnings")
+                    Text("消耗速率预警")
                         .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                         .foregroundStyle(theme.textPrimary)
 
-                    Text("Warn based on consumption pace, not fixed thresholds")
+                    Text("基于消耗速度预警，而非固定阈值")
                         .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                         .foregroundStyle(theme.textTertiary)
                 }
@@ -1014,17 +1014,17 @@ struct SettingsContentView: View {
 
             if settings.burnRateWarningEnabled {
                 HStack {
-                    Text("Threshold")
+                    Text("阈值")
                         .font(.system(size: 12, weight: .medium, design: theme.fontDesign))
                         .foregroundStyle(theme.textSecondary)
 
                     Spacer()
 
                     Picker("", selection: $settings.burnRateThreshold) {
-                        Text("1.2x (Sensitive)").tag(1.2)
-                        Text("1.5x (Default)").tag(1.5)
-                        Text("2.0x (Relaxed)").tag(2.0)
-                        Text("3.0x (Very relaxed)").tag(3.0)
+                        Text("1.2x（敏感）").tag(1.2)
+                        Text("1.5x（默认）").tag(1.5)
+                        Text("2.0x（宽松）").tag(2.0)
+                        Text("3.0x（非常宽松）").tag(3.0)
                     }
                     .pickerStyle(.menu)
                     .tint(theme.accentPrimary)
@@ -1055,7 +1055,7 @@ struct SettingsContentView: View {
                     Circle()
                         .fill(hooksInstalled ? Color.green : Color.gray)
                         .frame(width: 6, height: 6)
-                    Text(hooksInstalled ? "Hooks installed in ~/.claude/settings.json" : "Hooks not installed")
+                    Text(hooksInstalled ? "Hooks 已安装到 ~/.claude/settings.json" : "Hooks 未安装")
                         .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                         .foregroundStyle(theme.textSecondary)
                 }
@@ -1066,7 +1066,7 @@ struct SettingsContentView: View {
                         .foregroundStyle(.red)
                 }
 
-                Text("Track Claude Code sessions in real-time. Shows active session status, subagent activity, and task completion.")
+                Text("实时跟踪 Claude Code 会话。显示活跃会话状态、子智能体活动和任务完成情况。")
                     .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -1112,11 +1112,11 @@ struct SettingsContentView: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Claude Code Hooks")
+                Text("Claude Code 钩子")
                     .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                     .foregroundStyle(theme.textPrimary)
 
-                Text("Live session tracking")
+                Text("实时会话跟踪")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -1163,7 +1163,7 @@ struct SettingsContentView: View {
                     showSettings = false
                 }
             } label: {
-                Text("Done")
+                Text("完成")
                     .font(.system(size: 11, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(.white)
                     .padding(.horizontal, 16)
@@ -1208,11 +1208,11 @@ struct ThemeOptionButton: View {
                         .foregroundStyle(theme.textPrimary)
 
                     if mode == .christmas {
-                        Text("Festive")
+                        Text("节日")
                             .font(.system(size: 8, weight: .medium, design: .rounded))
                             .foregroundStyle(ChristmasTheme().accentPrimary)
                     } else if mode == .cli {
-                        Text("Terminal")
+                        Text("终端")
                             .font(.system(size: 8, weight: .medium, design: .monospaced))
                             .foregroundStyle(CLITheme().accentPrimary)
                     }

@@ -69,11 +69,11 @@ struct ExtensionConfigCard: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("\(manifest.name) Configuration")
+                Text("\(manifest.name) 配置")
                     .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                     .foregroundStyle(theme.textPrimary)
 
-                Text(manifest.description ?? "Extension settings")
+                Text(manifest.description ?? "扩展设置")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }

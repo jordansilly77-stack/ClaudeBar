@@ -109,7 +109,7 @@ struct BedrockConfigCard: View {
 
                 // Help text
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("AWS credentials are loaded from your configured profile.")
+                    Text("AWS 凭据从配置的 profile 中加载。")
                         .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                         .foregroundStyle(theme.textTertiary)
 
@@ -121,7 +121,7 @@ struct BedrockConfigCard: View {
                 // Link to AWS console
                 Link(destination: URL(string: "https://console.aws.amazon.com/bedrock/home")!) {
                     HStack(spacing: 3) {
-                        Text("Open Bedrock Console")
+                        Text("打开 Bedrock 控制台")
                             .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                         Image(systemName: "arrow.up.right")
                             .font(.system(size: 7, weight: .bold))
@@ -151,11 +151,11 @@ struct BedrockConfigCard: View {
                 }
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("AWS Bedrock Configuration")
+                    Text("AWS Bedrock 配置")
                         .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                         .foregroundStyle(theme.textPrimary)
 
-                    Text("CloudWatch usage tracking")
+                    Text("CloudWatch 用量追踪")
                         .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                         .foregroundStyle(theme.textTertiary)
                 }

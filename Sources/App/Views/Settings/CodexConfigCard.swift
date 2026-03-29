@@ -70,11 +70,11 @@ struct CodexConfigCard: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Codex Configuration")
+                Text("Codex 配置")
                     .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                     .foregroundStyle(theme.textPrimary)
 
-                Text("Data fetching method")
+                Text("数据获取方式")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -86,7 +86,7 @@ struct CodexConfigCard: View {
     private var codexConfigForm: some View {
         VStack(alignment: .leading, spacing: 14) {
             VStack(alignment: .leading, spacing: 6) {
-                Text("PROBE MODE")
+                Text("探测模式")
                     .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(theme.textSecondary)
                     .tracking(0.5)
@@ -117,7 +117,7 @@ struct CodexConfigCard: View {
                             .font(.system(size: 10, weight: .semibold, design: theme.fontDesign))
                             .foregroundStyle(codexProbeMode == .rpc ? theme.textPrimary : theme.textSecondary)
 
-                        Text("Uses codex app-server via JSON-RPC. Default, works with any auth.")
+                        Text("通过 JSON-RPC 使用 codex app-server。默认方式，支持任何认证。")
                             .font(.system(size: 9, weight: .medium, design: theme.fontDesign))
                             .foregroundStyle(theme.textTertiary)
                     }
@@ -134,7 +134,7 @@ struct CodexConfigCard: View {
                             .font(.system(size: 10, weight: .semibold, design: theme.fontDesign))
                             .foregroundStyle(codexProbeMode == .api ? theme.textPrimary : theme.textSecondary)
 
-                        Text("Calls ChatGPT API directly. Faster, uses OAuth credentials.")
+                        Text("直接调用 ChatGPT API。更快，使用 OAuth 凭据。")
                             .font(.system(size: 9, weight: .medium, design: theme.fontDesign))
                             .foregroundStyle(theme.textTertiary)
                     }
@@ -150,13 +150,13 @@ struct CodexConfigCard: View {
                         .font(.system(size: 10))
                         .foregroundStyle(hasCredentials ? theme.statusHealthy : theme.statusWarning)
 
-                    Text(hasCredentials ? "OAuth credentials found" : "No OAuth credentials found")
+                    Text(hasCredentials ? "已找到 OAuth 凭据" : "未找到 OAuth 凭据")
                         .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                         .foregroundStyle(hasCredentials ? theme.statusHealthy : theme.statusWarning)
                 }
 
                 if !hasCredentials {
-                    Text("Run `codex` in terminal to authenticate, then credentials will be available.")
+                    Text("在终端运行 `codex` 进行认证，之后凭据即可使用。")
                         .font(.system(size: 9, weight: .medium, design: theme.fontDesign))
                         .foregroundStyle(theme.textTertiary)
                 }

@@ -70,11 +70,11 @@ struct KimiConfigCard: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Kimi Configuration")
+                Text("Kimi 配置")
                     .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                     .foregroundStyle(theme.textPrimary)
 
-                Text("Data fetching method")
+                Text("数据获取方式")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -86,7 +86,7 @@ struct KimiConfigCard: View {
     private var kimiConfigForm: some View {
         VStack(alignment: .leading, spacing: 14) {
             VStack(alignment: .leading, spacing: 6) {
-                Text("PROBE MODE")
+                Text("探测模式")
                     .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(theme.textSecondary)
                     .tracking(0.5)
@@ -117,7 +117,7 @@ struct KimiConfigCard: View {
                             .font(.system(size: 10, weight: .semibold, design: theme.fontDesign))
                             .foregroundStyle(kimiProbeMode == .cli ? theme.textPrimary : theme.textSecondary)
 
-                        Text("Uses kimi CLI with /usage command. Requires kimi installed.")
+                        Text("使用 kimi CLI 的 /usage 命令。需要安装 kimi。")
                             .font(.system(size: 9, weight: .medium, design: theme.fontDesign))
                             .foregroundStyle(theme.textTertiary)
                     }
@@ -134,7 +134,7 @@ struct KimiConfigCard: View {
                             .font(.system(size: 10, weight: .semibold, design: theme.fontDesign))
                             .foregroundStyle(kimiProbeMode == .api ? theme.textPrimary : theme.textSecondary)
 
-                        Text("Calls Kimi API directly. Uses browser cookie authentication.")
+                        Text("直接调用 Kimi API。使用浏览器 Cookie 认证。")
                             .font(.system(size: 9, weight: .medium, design: theme.fontDesign))
                             .foregroundStyle(theme.textTertiary)
                     }

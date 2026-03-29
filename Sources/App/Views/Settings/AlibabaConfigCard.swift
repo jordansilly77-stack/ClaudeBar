@@ -85,11 +85,11 @@ struct AlibabaConfigCard: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Alibaba Configuration")
+                Text("阿里云配置")
                     .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                     .foregroundStyle(theme.textPrimary)
 
-                Text("Coding Plan quota tracking")
+                Text("Coding Plan 配额追踪")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -102,7 +102,7 @@ struct AlibabaConfigCard: View {
         VStack(alignment: .leading, spacing: 14) {
             // Region selector
             VStack(alignment: .leading, spacing: 6) {
-                Text("REGION")
+                Text("区域")
                     .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(theme.textSecondary)
                     .tracking(0.5)
@@ -166,7 +166,7 @@ struct AlibabaConfigCard: View {
                             }
                         }
 
-                    Text("Copy the cookie from your browser's developer tools after logging in to Alibaba Cloud.")
+                    Text("登录阿里云后，从浏览器开发者工具中复制 Cookie。")
                         .font(.system(size: 9, weight: .medium, design: theme.fontDesign))
                         .foregroundStyle(theme.textTertiary)
                 }
@@ -186,7 +186,7 @@ struct AlibabaConfigCard: View {
                         HStack(spacing: 3) {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.system(size: 9))
-                            Text("Configured")
+                            Text("已配置")
                                 .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                         }
                         .foregroundStyle(theme.statusHealthy)
@@ -235,7 +235,7 @@ struct AlibabaConfigCard: View {
                 HStack {
                     ProgressView()
                         .scaleEffect(0.7)
-                    Text("Testing connection...")
+                    Text("测试连接中…")
                         .font(.system(size: 11, weight: .medium, design: theme.fontDesign))
                         .foregroundStyle(theme.textSecondary)
                 }
@@ -245,7 +245,7 @@ struct AlibabaConfigCard: View {
                         await testAlibabaConnection()
                     }
                 } label: {
-                    Text("Save & Test Connection")
+                    Text("保存并测试连接")
                         .font(.system(size: 11, weight: .medium, design: theme.fontDesign))
                         .foregroundStyle(.white)
                         .padding(.horizontal, 12)
@@ -267,7 +267,7 @@ struct AlibabaConfigCard: View {
             // Dashboard link
             Link(destination: dashboardURL) {
                 HStack(spacing: 3) {
-                    Text("Open Alibaba Cloud Console")
+                    Text("打开阿里云控制台")
                         .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     Image(systemName: "arrow.up.right")
                         .font(.system(size: 7, weight: .bold))
@@ -285,7 +285,7 @@ struct AlibabaConfigCard: View {
                     HStack(spacing: 4) {
                         Image(systemName: "trash.fill")
                             .font(.system(size: 9))
-                        Text("Remove API Key")
+                        Text("移除 API 密钥")
                             .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     }
                     .foregroundStyle(theme.statusCritical)

@@ -19,7 +19,7 @@ struct CustomCardURLField: View {
                     .font(.system(size: 9))
                     .foregroundStyle(theme.textTertiary)
 
-                Text("CUSTOM CARD")
+                Text("自定义卡片")
                     .font(.system(size: 8, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
                     .tracking(0.5)

@@ -118,21 +118,21 @@ struct DailyUsageCardView: View {
         case .cost:
             let delta = report.formattedCostDelta
             if let pct = report.costChangePercent {
-                return "Vs \(date) \(delta) (\(String(format: "%.1f", abs(pct)))%)"
+                return "对比 \(date) \(delta) (\(String(format: "%.1f", abs(pct)))%)"
             }
-            return "Vs \(date) \(delta)"
+            return "对比 \(date) \(delta)"
         case .tokens:
             let delta = report.formattedTokenDelta
             if let pct = report.tokenChangePercent {
-                return "Vs \(date) \(delta) (\(String(format: "%.1f", abs(pct)))%)"
+                return "对比 \(date) \(delta) (\(String(format: "%.1f", abs(pct)))%)"
             }
-            return "Vs \(date) \(delta)"
+            return "对比 \(date) \(delta)"
         case .workingTime:
             let delta = report.formattedTimeDelta
             if let pct = report.timeChangePercent {
-                return "Vs \(date) \(delta) (\(String(format: "%.1f", abs(pct)))%)"
+                return "对比 \(date) \(delta) (\(String(format: "%.1f", abs(pct)))%)"
             }
-            return "Vs \(date) \(delta)"
+            return "对比 \(date) \(delta)"
         }
     }
 
@@ -157,9 +157,9 @@ enum DailyUsageMetric {
 
     var label: String {
         switch self {
-        case .cost: return "Cost Usage"
-        case .tokens: return "Token Usage"
-        case .workingTime: return "Working Time"
+        case .cost: return "费用统计"
+        case .tokens: return "令牌统计"
+        case .workingTime: return "工作时长"
         }
     }
 
@@ -173,9 +173,9 @@ enum DailyUsageMetric {
 
     var unitLabel: String {
         switch self {
-        case .cost: return "Spent"
-        case .tokens: return "Tokens"
-        case .workingTime: return "Duration"
+        case .cost: return "已花费"
+        case .tokens: return "令牌"
+        case .workingTime: return "时长"
         }
     }
 

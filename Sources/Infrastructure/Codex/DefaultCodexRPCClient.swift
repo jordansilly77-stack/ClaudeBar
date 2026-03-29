@@ -228,15 +228,15 @@ public final class DefaultCodexRPCClient: CodexRPCClient, @unchecked Sendable {
 
     internal func formatResetTime(_ date: Date) -> String {
         let interval = date.timeIntervalSinceNow
-        if interval <= 0 { return "Resets soon" }
+        if interval <= 0 { return "即将重置" }
 
         let hours = Int(interval / 3600)
         let minutes = Int((interval.truncatingRemainder(dividingBy: 3600)) / 60)
 
         if hours > 0 {
-            return "Resets in \(hours)h \(minutes)m"
+            return "\(hours)小时\(minutes)分钟后重置"
         } else {
-            return "Resets in \(minutes)m"
+            return "\(minutes)分钟后重置"
         }
     }
 

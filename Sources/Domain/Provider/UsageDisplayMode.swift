@@ -13,9 +13,9 @@ public enum UsageDisplayMode: String, Sendable, Equatable, CaseIterable {
     /// The label shown alongside the percentage in quota cards.
     public var displayLabel: String {
         switch self {
-        case .remaining: "Remaining"
-        case .used: "Used"
-        case .pace: "Remaining"
+        case .remaining: "剩余"
+        case .used: "已用"
+        case .pace: "剩余"
         }
     }
 }

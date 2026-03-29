@@ -27,7 +27,7 @@ struct SharePassOverlay: View {
                         .font(.system(size: 16, weight: .semibold))
                         .foregroundStyle(theme.accentPrimary)
 
-                    Text("Share Claude Code")
+                    Text("分享 Claude Code")
                         .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                         .foregroundStyle(theme.textPrimary)
 
@@ -76,7 +76,7 @@ struct SharePassOverlay: View {
                         HStack(spacing: 5) {
                             Image(systemName: copied ? "checkmark" : "doc.on.doc")
                                 .font(.system(size: 11, weight: .semibold))
-                            Text(copied ? "Copied!" : "Copy Link")
+                            Text(copied ? "已复制！" : "复制链接")
                                 .font(.system(size: 11, weight: .medium, design: theme.fontDesign))
                         }
                         .foregroundStyle(.white)
@@ -97,7 +97,7 @@ struct SharePassOverlay: View {
                         HStack(spacing: 5) {
                             Image(systemName: "safari")
                                 .font(.system(size: 11, weight: .semibold))
-                            Text("Open")
+                            Text("打开")
                                 .font(.system(size: 11, weight: .medium, design: theme.fontDesign))
                         }
                         .foregroundStyle(theme.textPrimary)
@@ -116,7 +116,7 @@ struct SharePassOverlay: View {
                 }
 
                 // Help text
-                Text("Share a free week of Claude Code with friends")
+                Text("分享一周免费 Claude Code 给朋友")
                     .font(.system(size: 10, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }

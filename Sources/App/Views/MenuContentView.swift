@@ -290,9 +290,9 @@ struct MenuContentView: View {
 
     private var headerSubtitle: String {
         switch theme.id {
-        case "cli": return "> usage monitor"
-        case "christmas": return "Happy Holidays!"
-        default: return "AI Usage Monitor"
+        case "cli": return "> 用量监控"
+        case "christmas": return "节日快乐！"
+        default: return "AI 用量监控"
         }
     }
 
@@ -337,7 +337,7 @@ struct MenuContentView: View {
     }
 
     private var statusText: String {
-        if isSelectedProviderSyncing { return "Syncing..." }
+        if isSelectedProviderSyncing { return "同步中…" }
         return selectedProviderStatus.badgeText
     }
 
@@ -345,10 +345,10 @@ struct MenuContentView: View {
     private var updateAvailableHelpText: String {
         #if ENABLE_SPARKLE
         if let version = sparkleUpdater?.availableVersion, sparkleUpdater?.isUpdateAvailable == true {
-            return "Update available: v\(version)"
+            return "有可用更新: v\(version)"
         }
         #endif
-        return "Settings"
+        return "设置"
     }
 
     // MARK: - Provider Pills
@@ -455,7 +455,7 @@ struct MenuContentView: View {
             Spacer()
 
             let status = provider.snapshot?.overallStatus ?? .healthy
-            Text(provider.isSyncing ? "Syncing..." : status.badgeText)
+            Text(provider.isSyncing ? "同步中…" : status.badgeText)
                 .badge(theme.statusColor(for: status))
         }
         .padding(.horizontal, 4)
@@ -467,7 +467,7 @@ struct MenuContentView: View {
                 .font(.system(size: 12))
                 .foregroundStyle(theme.statusWarning)
 
-            Text(provider.lastError?.localizedDescription ?? "Unavailable")
+            Text(provider.lastError?.localizedDescription ?? "不可用")
                 .font(.system(size: 11, weight: .medium, design: theme.fontDesign))
                 .foregroundStyle(theme.textTertiary)
                 .lineLimit(1)
@@ -512,7 +512,7 @@ struct MenuContentView: View {
                     }
                 }
 
-                Text("Updated \(snapshot.ageDescription)")
+                Text("更新于 \(snapshot.ageDescription)")
                     .font(.system(size: 10, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -619,12 +619,12 @@ struct MenuContentView: View {
                     .foregroundStyle(theme.statusWarning)
             }
 
-            Text("\(selectedProvider?.name ?? selectedProviderId) Unavailable")
+            Text("\(selectedProvider?.name ?? selectedProviderId) 不可用")
                 .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                 .foregroundStyle(theme.textPrimary)
 
             // Show actual error message if available, otherwise generic message
-            Text(selectedProvider?.lastError?.localizedDescription ?? "Install CLI or check configuration")
+            Text(selectedProvider?.lastError?.localizedDescription ?? "请安装 CLI 或检查配置")
                 .font(.system(size: 11, weight: .semibold, design: theme.fontDesign))
                 .foregroundStyle(theme.textTertiary)
                 .multilineTextAlignment(.center)
@@ -642,7 +642,7 @@ struct MenuContentView: View {
             // Dashboard Button
             WrappedActionButton(
                 icon: "safari.fill",
-                label: "Dashboard",
+                label: "仪表盘",
                 gradient: theme.accentGradient
             ) {
                 if let url = selectedProvider?.dashboardURL {
@@ -657,7 +657,7 @@ struct MenuContentView: View {
                 : selectedProvider?.isSyncing == true
             WrappedActionButton(
                 icon: isCurrentlyRefreshing ? "arrow.trianglehead.2.counterclockwise.rotate.90" : "arrow.clockwise",
-                label: isCurrentlyRefreshing ? "Syncing" : "Refresh",
+                label: isCurrentlyRefreshing ? "同步中" : "刷新",
                 gradient: theme.accentGradient,
                 isLoading: isCurrentlyRefreshing
             ) {
@@ -695,7 +695,7 @@ struct MenuContentView: View {
                     }
                 }
                 .buttonStyle(.plain)
-                .help("Share Claude Code")
+                .help("分享 Claude Code")
                 .keyboardShortcut("s")
             }
 
@@ -741,7 +741,7 @@ struct MenuContentView: View {
                 }
             }
             .buttonStyle(.plain)
-            .help("Quit ClaudeBar")
+            .help("退出 ClaudeBar")
             .keyboardShortcut("q")
         }
         .opacity(animateIn ? 1 : 0)
@@ -935,7 +935,7 @@ struct WrappedStatCard: View {
 
                 Spacer()
 
-                Text(quota.isDollarBased ? "Remaining" : effectiveDisplayMode.displayLabel)
+                Text(quota.isDollarBased ? "剩余" : effectiveDisplayMode.displayLabel)
                     .font(.system(size: 12, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(effectiveDisplayMode == .pace ? paceColor.opacity(0.8) : theme.textTertiary)
             }
@@ -1056,7 +1056,7 @@ struct LoadingSpinnerView: View {
                     )
             }
 
-            Text("Fetching usage data...")
+            Text("正在获取用量数据…")
                 .font(.system(size: 13, weight: .medium, design: theme.fontDesign))
                 .foregroundStyle(theme.textSecondary)
         }

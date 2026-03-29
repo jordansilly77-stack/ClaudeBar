@@ -109,11 +109,11 @@ struct CopilotConfigCard: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("GitHub Copilot Configuration")
+                Text("GitHub Copilot 配置")
                     .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                     .foregroundStyle(theme.textPrimary)
 
-                Text("Premium usage tracking")
+                Text("高级用量追踪")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -126,7 +126,7 @@ struct CopilotConfigCard: View {
         VStack(alignment: .leading, spacing: 14) {
             // Probe Mode Picker
             VStack(alignment: .leading, spacing: 6) {
-                Text("PROBE MODE")
+                Text("探测模式")
                     .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(theme.textSecondary)
                     .tracking(0.5)
@@ -221,7 +221,7 @@ struct CopilotConfigCard: View {
                         HStack(spacing: 3) {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.system(size: 9))
-                            Text("Configured")
+                            Text("已配置")
                                 .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                         }
                         .foregroundStyle(theme.statusHealthy)
@@ -276,7 +276,7 @@ struct CopilotConfigCard: View {
                     HStack(spacing: 4) {
                         Image(systemName: "checkmark.circle.fill")
                             .font(.system(size: 9))
-                        Text("Token saved!")
+                        Text("令牌已保存！")
                             .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     }
                     .foregroundStyle(theme.statusHealthy)
@@ -352,18 +352,18 @@ struct CopilotConfigCard: View {
                             Image(systemName: "exclamationmark.triangle.fill")
                                 .font(.system(size: 10))
                                 .foregroundStyle(theme.statusWarning)
-                            Text("API returned no usage data")
+                            Text("API 未返回用量数据")
                                 .font(.system(size: 10, weight: .semibold, design: theme.fontDesign))
                                 .foregroundStyle(theme.textPrimary)
                         }
 
-                        Text("This is common for Copilot Business subscriptions. Try switching to Copilot API mode.")
+                        Text("这在 Copilot Business 订阅中很常见。请尝试切换到 Copilot API 模式。")
                             .font(.system(size: 9, weight: .medium, design: theme.fontDesign))
                             .foregroundStyle(theme.textSecondary)
 
                         Link(destination: URL(string: "https://github.com/settings/copilot/features")!) {
                             HStack(spacing: 4) {
-                                Text("View usage on GitHub")
+                                Text("在 GitHub 上查看用量")
                                     .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                                 Image(systemName: "arrow.up.right")
                                     .font(.system(size: 8))
@@ -383,7 +383,7 @@ struct CopilotConfigCard: View {
                 }
 
                 // Manual override toggle
-                Toggle("Enable manual usage entry", isOn: $copilotManualOverrideEnabled)
+                Toggle("启用手动输入用量", isOn: $copilotManualOverrideEnabled)
                     .font(.system(size: 11, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textPrimary)
                     .toggleStyle(.switch)
@@ -456,15 +456,15 @@ struct CopilotConfigCard: View {
 
             // Token lookup order
             VStack(alignment: .leading, spacing: 4) {
-                Text("TOKEN LOOKUP ORDER")
+                Text("令牌查找顺序")
                     .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(theme.textSecondary)
                     .tracking(0.5)
 
-                Text("1. First checks environment variable if specified")
+                Text("1. 优先检查指定的环境变量")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
-                Text("2. Falls back to direct token entry above")
+                Text("2. 回退到上方直接输入的令牌")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -474,7 +474,7 @@ struct CopilotConfigCard: View {
                 HStack {
                     ProgressView()
                         .scaleEffect(0.7)
-                    Text("Testing connection...")
+                    Text("测试连接中…")
                         .font(.system(size: 11, weight: .medium, design: theme.fontDesign))
                         .foregroundStyle(theme.textSecondary)
                 }
@@ -484,7 +484,7 @@ struct CopilotConfigCard: View {
                         await testCopilotConnection()
                     }
                 } label: {
-                    Text("Save & Test Connection")
+                    Text("保存并测试连接")
                         .font(.system(size: 11, weight: .medium, design: theme.fontDesign))
                         .foregroundStyle(.white)
                         .padding(.horizontal, 12)
@@ -544,7 +544,7 @@ struct CopilotConfigCard: View {
                     HStack(spacing: 4) {
                         Image(systemName: "trash.fill")
                             .font(.system(size: 9))
-                        Text("Remove Token")
+                        Text("移除令牌")
                             .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     }
                     .foregroundStyle(theme.statusCritical)

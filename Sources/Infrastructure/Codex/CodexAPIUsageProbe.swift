@@ -335,11 +335,11 @@ public struct CodexAPIUsageProbe: UsageProbe, @unchecked Sendable {
         let minutes = Int((seconds.truncatingRemainder(dividingBy: 3600)) / 60)
 
         if hours > 0 {
-            return "Resets in \(hours)h \(minutes)m"
+            return "\(hours)小时\(minutes)分钟后重置"
         } else if minutes > 0 {
-            return "Resets in \(minutes)m"
+            return "\(minutes)分钟后重置"
         } else {
-            return "Resets soon"
+            return "即将重置"
         }
     }
 

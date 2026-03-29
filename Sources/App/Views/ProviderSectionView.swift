@@ -44,7 +44,7 @@ struct ProviderSectionView: View {
 
             // Age indicator
             HStack {
-                Text("Updated \(snapshot.ageDescription)")
+                Text("更新于 \(snapshot.ageDescription)")
                     .font(.caption2)
                     .foregroundStyle(.tertiary)
 

@@ -62,11 +62,11 @@ struct AccountManagementCard: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Accounts")
+                Text("账号")
                     .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                     .foregroundStyle(theme.textPrimary)
 
-                Text("\(provider.accounts.count) account\(provider.accounts.count == 1 ? "" : "s") configured")
+                Text("已配置 \(provider.accounts.count) 个账号")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -138,7 +138,7 @@ struct AccountManagementCard: View {
                 Button {
                     provider.switchAccount(to: account.accountId)
                 } label: {
-                    Text("Switch")
+                    Text("切换")
                         .font(.system(size: 9, weight: .medium, design: theme.fontDesign))
                         .foregroundStyle(theme.accentPrimary)
                         .padding(.horizontal, 8)
@@ -164,7 +164,7 @@ struct AccountManagementCard: View {
                 Image(systemName: "plus.circle.fill")
                     .font(.system(size: 12, weight: .semibold))
 
-                Text("Add Account")
+                Text("添加账号")
                     .font(.system(size: 11, weight: .medium, design: theme.fontDesign))
             }
             .foregroundStyle(theme.accentPrimary)

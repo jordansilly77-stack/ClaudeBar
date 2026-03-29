@@ -39,13 +39,13 @@ struct SessionIndicatorView: View {
 
                 HStack(spacing: 8) {
                     if session.completedTaskCount > 0 {
-                        Label("\(session.completedTaskCount) tasks", systemImage: "checkmark.circle.fill")
+                        Label("\(session.completedTaskCount) 个任务", systemImage: "checkmark.circle.fill")
                             .font(.system(size: 9, weight: .medium, design: theme.fontDesign))
                             .foregroundStyle(theme.textSecondary)
                     }
 
                     if session.activeSubagentCount > 0 {
-                        Label("\(session.activeSubagentCount) agents", systemImage: "person.2.fill")
+                        Label("\(session.activeSubagentCount) 个智能体", systemImage: "person.2.fill")
                             .font(.system(size: 9, weight: .medium, design: theme.fontDesign))
                             .foregroundStyle(theme.textSecondary)
                     }

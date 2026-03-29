@@ -45,7 +45,7 @@ struct CostStatCard: View {
                         .font(.system(size: 9, weight: .bold))
                         .foregroundStyle(budgetStatusColor)
 
-                    Text("API COST")
+                    Text("API 费用")
                         .font(.system(size: 8, weight: .semibold, design: theme.fontDesign))
                         .foregroundStyle(theme.textSecondary)
                         .tracking(0.3)
@@ -79,7 +79,7 @@ struct CostStatCard: View {
                     Image(systemName: "clock.fill")
                         .font(.system(size: 7))
 
-                    Text("API Time: \(costUsage.formattedApiDuration)")
+                    Text("API 时间: \(costUsage.formattedApiDuration)")
                         .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                 }
                 .foregroundStyle(theme.textTertiary)
@@ -144,7 +144,7 @@ struct CostStatCard: View {
 
             // Budget label
             HStack {
-                Text("\(Int(budgetPercentUsed))% of \(formatBudget(budget)) budget")
+                Text("已用 \(formatBudget(budget)) 预算的 \(Int(budgetPercentUsed))%")
                     .font(.system(size: 8, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
 

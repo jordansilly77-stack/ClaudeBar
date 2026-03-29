@@ -79,11 +79,11 @@ struct MiniMaxConfigCard: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("MiniMax Configuration")
+                Text("MiniMax 配置")
                     .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                     .foregroundStyle(theme.textPrimary)
 
-                Text("Coding Plan quota tracking")
+                Text("Coding Plan 配额追踪")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -96,7 +96,7 @@ struct MiniMaxConfigCard: View {
         VStack(alignment: .leading, spacing: 14) {
             // Region selector
             VStack(alignment: .leading, spacing: 6) {
-                Text("REGION")
+                Text("区域")
                     .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(theme.textSecondary)
                     .tracking(0.5)
@@ -129,7 +129,7 @@ struct MiniMaxConfigCard: View {
                         HStack(spacing: 3) {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.system(size: 9))
-                            Text("Configured")
+                            Text("已配置")
                                 .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                         }
                         .foregroundStyle(theme.statusHealthy)
@@ -200,15 +200,15 @@ struct MiniMaxConfigCard: View {
 
             // Token lookup order
             VStack(alignment: .leading, spacing: 4) {
-                Text("API KEY LOOKUP ORDER")
+                Text("API 密钥查找顺序")
                     .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(theme.textSecondary)
                     .tracking(0.5)
 
-                Text("1. First checks environment variable (default: MINIMAX_API_KEY)")
+                Text("1. 优先检查环境变量（默认: MINIMAX_API_KEY）")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
-                Text("2. Falls back to API key entered above")
+                Text("2. 回退到上方输入的 API 密钥")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -218,7 +218,7 @@ struct MiniMaxConfigCard: View {
                 HStack {
                     ProgressView()
                         .scaleEffect(0.7)
-                    Text("Testing connection...")
+                    Text("测试连接中…")
                         .font(.system(size: 11, weight: .medium, design: theme.fontDesign))
                         .foregroundStyle(theme.textSecondary)
                 }
@@ -228,7 +228,7 @@ struct MiniMaxConfigCard: View {
                         await testMiniMaxConnection()
                     }
                 } label: {
-                    Text("Save & Test Connection")
+                    Text("保存并测试连接")
                         .font(.system(size: 11, weight: .medium, design: theme.fontDesign))
                         .foregroundStyle(.white)
                         .padding(.horizontal, 12)
@@ -249,13 +249,13 @@ struct MiniMaxConfigCard: View {
 
             // Help link
             VStack(alignment: .leading, spacing: 4) {
-                Text("Get your API key from MiniMax platform")
+                Text("从 MiniMax 平台获取 API 密钥")
                     .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
 
                 Link(destination: miniMaxRegion.apiKeysURL) {
                     HStack(spacing: 3) {
-                        Text("Open MiniMax API Keys")
+                        Text("打开 MiniMax API 密钥")
                             .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                         Image(systemName: "arrow.up.right")
                             .font(.system(size: 7, weight: .bold))
@@ -274,7 +274,7 @@ struct MiniMaxConfigCard: View {
                     HStack(spacing: 4) {
                         Image(systemName: "trash.fill")
                             .font(.system(size: 9))
-                        Text("Remove API Key")
+                        Text("移除 API 密钥")
                             .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     }
                     .foregroundStyle(theme.statusCritical)

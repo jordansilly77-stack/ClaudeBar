@@ -34,10 +34,10 @@ public struct ClaudeSession: Sendable, Equatable, Identifiable {
         /// Human-readable label for this phase
         public var label: String {
             switch self {
-            case .active: return "Active"
-            case .subagentsWorking: return "Agents Working"
-            case .stopped: return "Stopped"
-            case .ended: return "Ended"
+            case .active: return "运行中"
+            case .subagentsWorking: return "智能体运行中"
+            case .stopped: return "已停止"
+            case .ended: return "已结束"
             }
         }
     }

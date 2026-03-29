@@ -168,9 +168,9 @@ public struct UsageQuota: Sendable, Equatable, Hashable, Comparable {
         guard let pacePercent, pace != .unknown else { return nil }
         let delta = Int(abs(pacePercent))
         switch pace {
-        case .behind: return "\(delta)% below expected usage"
-        case .ahead: return "\(delta)% above expected usage"
-        case .onPace: return "Right on track"
+        case .behind: return "低于预期用量 \(delta)%"
+        case .ahead: return "高于预期用量 \(delta)%"
+        case .onPace: return "进度正常"
         case .unknown: return nil
         }
     }
@@ -191,12 +191,12 @@ public struct UsageQuota: Sendable, Equatable, Hashable, Comparable {
         let minutes = totalMinutes % 60
 
         var parts: [String] = []
-        if days > 0 { parts.append("\(days)d") }
-        if hours > 0 { parts.append("\(hours)h") }
-        if minutes > 0 { parts.append("\(minutes)m") }
+        if days > 0 { parts.append("\(days)天") }
+        if hours > 0 { parts.append("\(hours)小时") }
+        if minutes > 0 { parts.append("\(minutes)分钟") }
 
-        if parts.isEmpty { return "Resets soon" }
-        return "Resets in \(parts.joined(separator: " "))"
+        if parts.isEmpty { return "即将重置" }
+        return "\(parts.joined())后重置"
     }
 
     /// Human-readable description of time until reset
@@ -208,13 +208,13 @@ public struct UsageQuota: Sendable, Equatable, Hashable, Comparable {
 
         if hours > 24 {
             let days = hours / 24
-            return "Resets in \(days)d \(hours % 24)h"
+            return "\(days)天\(hours % 24)小时后重置"
         } else if hours > 0 {
-            return "Resets in \(hours)h \(minutes)m"
+            return "\(hours)小时\(minutes)分钟后重置"
         } else if minutes > 0 {
-            return "Resets in \(minutes)m"
+            return "\(minutes)分钟后重置"
         } else {
-            return "Resets soon"
+            return "即将重置"
         }
     }
 

@@ -111,9 +111,9 @@ struct ExtensionMetricCardView: View {
 
     private func deltaText(_ delta: MetricDelta) -> String {
         if let pct = delta.percent {
-            return "Vs \(delta.vs) \(delta.value) (\(String(format: "%.1f", abs(pct)))%)"
+            return "对比 \(delta.vs) \(delta.value) (\(String(format: "%.1f", abs(pct)))%)"
         }
-        return "Vs \(delta.vs) \(delta.value)"
+        return "对比 \(delta.vs) \(delta.value)"
     }
 }
 

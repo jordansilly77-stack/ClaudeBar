@@ -46,7 +46,7 @@ struct QuotaCardView: View {
 
             // Value display
             if let dollarText = quota.formattedDollarRemaining {
-                Text("\(dollarText) remaining")
+                Text("\(dollarText) 剩余")
                     .font(.headline)
                     .fontWeight(.semibold)
                     .foregroundStyle(dollarDisplayColor)

@@ -16,9 +16,9 @@ public enum QuotaType: Sendable, Equatable, Hashable {
     public var displayName: String {
         switch self {
         case .session:
-            "Session"
+            "会话"
         case .weekly:
-            "Weekly"
+            "每周"
         case .modelSpecific(let modelName):
             modelName.capitalized
         case .timeLimit(let name):
@@ -70,9 +70,9 @@ public enum QuotaDuration: Sendable, Equatable, Hashable {
     public var description: String {
         switch self {
         case .hours(let h):
-            "\(h) hour\(h == 1 ? "" : "s")"
+            "\(h)小时"
         case .days(let d):
-            "\(d) day\(d == 1 ? "" : "s")"
+            "\(d)天"
         }
     }
 }

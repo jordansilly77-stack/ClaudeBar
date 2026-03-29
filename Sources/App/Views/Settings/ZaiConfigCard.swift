@@ -22,15 +22,15 @@ struct ZaiConfigCard: View {
             VStack(alignment: .leading, spacing: 14) {
                 // Explanation text
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("TOKEN LOOKUP ORDER")
+                    Text("令牌查找顺序")
                         .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                         .foregroundStyle(theme.textSecondary)
                         .tracking(0.5)
 
-                    Text("1. First looks for token in the settings.json file")
+                    Text("1. 优先从 settings.json 文件查找令牌")
                         .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                         .foregroundStyle(theme.textTertiary)
-                    Text("2. Falls back to environment variable if not found in file")
+                    Text("2. 文件中未找到则回退到环境变量")
                         .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                         .foregroundStyle(theme.textTertiary)
                 }
@@ -84,7 +84,7 @@ struct ZaiConfigCard: View {
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Leave both empty to use default path with no env var fallback")
+                    Text("两项都留空则使用默认路径，不启用环境变量回退")
                         .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                         .foregroundStyle(theme.textTertiary)
                 }
@@ -111,11 +111,11 @@ struct ZaiConfigCard: View {
                 }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Z.ai / GLM Configuration")
+                Text("Z.ai / GLM 配置")
                     .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                     .foregroundStyle(theme.textPrimary)
 
-                Text("Authentication fallback settings")
+                Text("认证回退设置")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }

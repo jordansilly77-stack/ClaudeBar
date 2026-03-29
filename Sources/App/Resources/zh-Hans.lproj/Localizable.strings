@@ -1,0 +1,223 @@
+/* ClaudeBar 简体中文本地化 */
+
+/* 通用 */
+"AI Usage Monitor" = "AI 用量监控";
+"ClaudeBar" = "ClaudeBar";
+"Settings" = "设置";
+"About" = "关于";
+"Done" = "完成";
+"Back" = "返回";
+"Open" = "打开";
+"Switch" = "切换";
+"Hello" = "你好";
+"Overview" = "概览";
+"Accounts" = "账号";
+"Providers" = "服务商";
+"Updates" = "更新";
+"Logs" = "日志";
+"Terminal" = "终端";
+"Critical" = "严重";
+"Warning" = "警告";
+"Threshold" = "阈值";
+
+/* 状态 */
+"ACTIVE" = "运行中";
+"HEALTHY" = "健康";
+"Healthy" = "健康";
+"LOW" = "偏低";
+"WARNING" = "警告";
+"CRITICAL" = "严重";
+"DEPLETED" = "已耗尽";
+"Depleted" = "已耗尽";
+"EMPTY" = "空";
+"CHRISTMAS" = "圣诞";
+
+/* 用量相关 */
+"API COST" = "API 费用";
+"API Usage" = "API 用量";
+"CURRENT PREMIUM REQUEST USAGE" = "高级请求当前用量";
+"TODAY'S USAGE" = "今日用量";
+"Daily Usage Cards" = "每日用量卡片";
+"Daily Budget" = "每日预算";
+"DAILY BUDGET (USD, OPTIONAL)" = "每日预算（美元，可选）";
+"MONTHLY BUDGET (USD)" = "每月预算（美元）";
+"MONTHLY PREMIUM REQUEST LIMIT" = "每月高级请求上限";
+"Claude API Budget" = "Claude API 预算";
+"Fetching usage data..." = "正在获取用量数据…";
+"Updated \(snapshot.ageDescription)" = "已更新 \(snapshot.ageDescription)";
+"Since \(formattedPeriodStart)" = "自 \(formattedPeriodStart) 起";
+"Last checked: \(lastCheck.formatted(date: .abbreviated, time: .shortened))" = "上次检查：\(lastCheck.formatted(date: .abbreviated, time: .shortened))";
+"Just now" = "刚刚";
+"and \(usage.modelUsages.count - 3) more..." = "还有 \(usage.modelUsages.count - 3) 个…";
+
+/* 配置页面 */
+"Claude Configuration" = "Claude 配置";
+"Claude Code" = "Claude Code";
+"Claude Code Hooks" = "Claude Code 钩子";
+"Codex Configuration" = "Codex 配置";
+"Codex" = "Codex";
+"GitHub Copilot Configuration" = "GitHub Copilot 配置";
+"Kimi Configuration" = "Kimi 配置";
+"MiniMax Configuration" = "MiniMax 配置";
+"Alibaba Configuration" = "阿里云配置";
+"AWS Bedrock Configuration" = "AWS Bedrock 配置";
+"Z.ai / GLM Configuration" = "Z.ai / GLM 配置";
+"Z.ai" = "Z.ai";
+"Gemini" = "Gemini";
+"Claude" = "Claude";
+"Alibaba connection test succeeded" = "阿里云连接测试成功";
+
+/* API 设置 */
+"API KEY" = "API 密钥";
+"API KEY LOOKUP ORDER" = "API 密钥查找顺序";
+"API KEY ENV VAR (ALTERNATIVE)" = "API 密钥环境变量（备选）";
+"AUTH TOKEN ENV VAR (ALTERNATIVE)" = "认证令牌环境变量（备选）";
+"AUTH TOKEN ENV VAR (FALLBACK)" = "认证令牌环境变量（回退）";
+"PERSONAL ACCESS TOKEN" = "个人访问令牌";
+"TOKEN LOOKUP ORDER" = "令牌查找顺序";
+"GITHUB USERNAME" = "GitHub 用户名";
+"AWS PROFILE NAME" = "AWS 配置文件名";
+"SETTINGS.JSON PATH" = "settings.json 路径";
+"COOKIE SOURCE" = "Cookie 来源";
+"COOKIE STRING" = "Cookie 字符串";
+"REGION" = "区域";
+"REGIONS (COMMA-SEPARATED)" = "区域（逗号分隔）";
+"PROBE MODE" = "探测模式";
+"SYNC INTERVAL" = "同步间隔";
+"CUSTOM CARD" = "自定义卡片";
+
+/* 认证说明 */
+"1. First checks environment variable (default: MINIMAX_API_KEY)" = "1. 优先检查环境变量（默认：MINIMAX_API_KEY）";
+"1. First checks environment variable if specified" = "1. 优先检查指定的环境变量";
+"1. First looks for token in the settings.json file" = "1. 优先在 settings.json 文件中查找令牌";
+"2. Falls back to API key entered above" = "2. 回退到上方输入的 API 密钥";
+"2. Falls back to direct token entry above" = "2. 回退到上方直接输入的令牌";
+"2. Falls back to environment variable if not found in file" = "2. 文件中找不到时回退到环境变量";
+"AWS credentials are loaded from your configured profile." = "AWS 凭证将从您配置的配置文件中加载。";
+"Configure with: aws configure --profile <name>" = "配置命令：aws configure --profile <名称>";
+"Run `claude` in terminal to authenticate, then credentials will be available." = "在终端运行 `claude` 完成认证，凭证即可使用。";
+"Run `codex` in terminal to authenticate, then credentials will be available." = "在终端运行 `codex` 完成认证，凭证即可使用。";
+"Copy the cookie from your browser's developer tools after logging in to Alibaba Cloud." = "登录阿里云后，从浏览器开发者工具中复制 Cookie。";
+"Leave both empty to use default path with no env var fallback" = "两者留空则使用默认路径，不回退环境变量";
+
+/* 模式选项 */
+"API Mode" = "API 模式";
+"CLI Mode" = "CLI 模式";
+"CLI" = "CLI";
+"CLI fallback" = "CLI 回退";
+"RPC Mode" = "RPC 模式";
+"Copilot API Mode" = "Copilot API 模式";
+"Billing Mode" = "账单模式";
+"Data fetching method" = "数据获取方式";
+"Calls Anthropic API directly. Faster, uses OAuth credentials." = "直接调用 Anthropic API，速度更快，使用 OAuth 凭证。";
+"Calls ChatGPT API directly. Faster, uses OAuth credentials." = "直接调用 ChatGPT API，速度更快，使用 OAuth 凭证。";
+"Calls Kimi API directly. Uses browser cookie authentication." = "直接调用 Kimi API，使用浏览器 Cookie 认证。";
+"Runs `claude /usage` command. Works with any auth method." = "运行 `claude /usage` 命令，兼容所有认证方式。";
+"Uses Copilot Internal API. Works for all plans (incl. Business/Enterprise). Requires Classic PAT with 'copilot' scope." = "使用 Copilot 内部 API，支持所有套餐（含商业版/企业版），需要含 'copilot' 权限的经典 PAT。";
+"Uses GitHub Billing API. Requires fine-grained PAT with 'Plan: read'." = "使用 GitHub 账单 API，需要含 'Plan: read' 权限的细粒度 PAT。";
+"Uses codex app-server via JSON-RPC. Default, works with any auth." = "通过 JSON-RPC 使用 codex app-server，默认方式，兼容所有认证。";
+"Uses kimi CLI with /usage command. Requires kimi installed." = "使用 kimi CLI 的 /usage 命令，需要安装 kimi。";
+"Fall back to `claude /usage` if OAuth API is unavailable." = "OAuth API 不可用时回退到 `claude /usage`。";
+"This is common for Copilot Business subscriptions. Try switching to Copilot API mode." = "Copilot 商业版订阅较常见此问题，请尝试切换到 Copilot API 模式。";
+
+/* 套餐档位 */
+"Free/Pro (50)" = "免费/专业版（50）";
+"Business (300)" = "商业版（300）";
+"Enterprise (1000)" = "企业版（1000）";
+"Pro+ (1500)" = "Pro+（1500）";
+
+/* 功能开关 */
+"Background Sync" = "后台同步";
+"Launch at Login" = "开机启动";
+"Live session tracking" = "实时会话追踪";
+"CloudWatch usage tracking" = "CloudWatch 用量追踪";
+"Premium usage tracking" = "高级用量追踪";
+"Coding Plan quota tracking" = "Coding Plan 配额追踪";
+"Glass Card Style" = "毛玻璃卡片样式";
+"Provider Colors" = "服务商颜色";
+"Status Colors" = "状态颜色";
+"Show all providers at once" = "同时显示所有服务商";
+"Show remaining or used percentage" = "显示剩余或已用百分比";
+"Quota Display" = "配额显示";
+"Sync usage data in the background so it's always fresh when you check." = "在后台同步用量数据，查看时始终保持最新。";
+"Keep data fresh automatically" = "自动保持数据新鲜";
+"Start ClaudeBar when you log in" = "登录时自动启动 ClaudeBar";
+"Track Claude Code sessions in real-time. Shows active session status, subagent activity, and task completion." = "实时追踪 Claude Code 会话，显示活跃会话状态、子智能体活动和任务完成情况。";
+"Enable or disable AI providers" = "启用或禁用 AI 服务商";
+"Burn Rate Warnings" = "消耗速率警告";
+"Cost threshold warnings" = "费用阈值警告";
+"Get warnings when approaching your budget threshold." = "接近预算阈值时发出警告。";
+"Warn based on consumption pace, not fixed thresholds" = "基于消耗速率而非固定阈值发出警告";
+"Get early access to new features" = "提前体验新功能";
+
+/* 令牌相关 */
+"Add Account" = "添加账号";
+"Remove API Key" = "删除 API 密钥";
+"Remove Token" = "删除令牌";
+"Token saved!" = "令牌已保存！";
+"Configured" = "已配置";
+"Save & Test Connection" = "保存并测试连接";
+"Testing connection..." = "正在测试连接…";
+"Create a Classic PAT with 'copilot' scope" = "创建含 'copilot' 权限的经典 PAT";
+"Create a fine-grained PAT with 'Plan: read' permission" = "创建含 'Plan: read' 权限的细粒度 PAT";
+"Create classic token" = "创建经典令牌";
+"Create fine-grained token" = "创建细粒度令牌";
+"Note: This is for premium requests (Copilot Chat with advanced models), not code completions" = "注意：此为高级请求（使用高级模型的 Copilot Chat），不含代码补全";
+"Only applies to Claude API accounts, not Claude Max." = "仅适用于 Claude API 账号，不适用于 Claude Max。";
+
+/* 外部链接 */
+"Open Alibaba Cloud Console" = "打开阿里云控制台";
+"Open Bedrock Console" = "打开 Bedrock 控制台";
+"Open Log File" = "打开日志文件";
+"Open MiniMax API Keys" = "打开 MiniMax API 密钥页面";
+"Opens ClaudeBar.log in TextEdit" = "在文本编辑器中打开 ClaudeBar.log";
+"Report issues or contribute on GitHub" = "在 GitHub 上报告问题或参与贡献";
+"View on GitHub" = "在 GitHub 上查看";
+"View usage on GitHub" = "在 GitHub 上查看用量";
+"View application logs" = "查看应用日志";
+"Share Claude Code" = "分享 Claude Code";
+"Share a free week of Claude Code with friends" = "与朋友分享一周免费的 Claude Code";
+"API returned no usage data" = "API 未返回用量数据";
+
+/* 主题 */
+"Appearance" = "外观";
+"Choose your theme" = "选择主题";
+"Light" = "浅色";
+"Dark" = "深色";
+"Christmas" = "圣诞";
+"Festive" = "节日";
+
+/* 更新 */
+"Check for Updates" = "检查更新";
+"Check automatically" = "自动检查";
+"Include beta versions" = "包含测试版";
+"Updates unavailable in debug builds" = "调试版本不支持更新";
+"Authentication fallback settings" = "认证回退设置";
+
+/* 速率限制 */
+"1.2x (Sensitive)" = "1.2x（敏感）";
+"1.5x (Default)" = "1.5x（默认）";
+"2.0x (Relaxed)" = "2.0x（宽松）";
+"3.0x (Very relaxed)" = "3.0x（非常宽松）";
+
+/* 时间间隔 */
+"30 seconds" = "30 秒";
+"1 minute" = "1 分钟";
+"2 minutes" = "2 分钟";
+"5 minutes" = "5 分钟";
+
+/* 占位符（保持英文） */
+"~/.claude/settings.json" = "~/.claude/settings.json";
+"us-east-1, us-west-2" = "us-east-1, us-west-2";
+"eyJhbGci..." = "eyJhbGci...";
+"ghp_xxxx..." = "ghp_xxxx...";
+"sk-..." = "sk-...";
+"user@example.com" = "user@example.com";
+"username" = "用户名";
+"default" = "默认";
+"Paste cookie string..." = "粘贴 Cookie 字符串…";
+"Enter request count (e.g., 99) or percentage (e.g., 198%)" = "输入请求数（如 99）或百分比（如 198%）";
+"Get your API key from MiniMax platform" = "从 MiniMax 平台获取 API 密钥";
+"99 or 198%" = "99 或 198%";
+"10.00" = "10.00";
+"50.00" = "50.00";

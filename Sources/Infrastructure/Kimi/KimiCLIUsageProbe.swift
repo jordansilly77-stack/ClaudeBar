@@ -116,7 +116,7 @@ public struct KimiCLIUsageProbe: UsageProbe {
                     .replacingOccurrences(of: "(resets in ", with: "")
                     .replacingOccurrences(of: ")", with: "")
                     .trimmingCharacters(in: .whitespaces)
-                resetText = "Resets in \(raw)"
+                resetText = "\(raw)后重置"
                 resetsAt = parseResetDuration(raw)
             }
 

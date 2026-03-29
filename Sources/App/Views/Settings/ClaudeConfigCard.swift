@@ -89,11 +89,11 @@ struct ClaudeConfigCard: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Claude Configuration")
+                Text("Claude 配置")
                     .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                     .foregroundStyle(theme.textPrimary)
 
-                Text("Data fetching method")
+                Text("数据获取方式")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -105,7 +105,7 @@ struct ClaudeConfigCard: View {
     private var configForm: some View {
         VStack(alignment: .leading, spacing: 14) {
             VStack(alignment: .leading, spacing: 6) {
-                Text("PROBE MODE")
+                Text("探测模式")
                     .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(theme.textSecondary)
                     .tracking(0.5)
@@ -136,7 +136,7 @@ struct ClaudeConfigCard: View {
                             .font(.system(size: 10, weight: .semibold, design: theme.fontDesign))
                             .foregroundStyle(claudeProbeMode == .cli ? theme.textPrimary : theme.textSecondary)
 
-                        Text("Runs `claude /usage` command. Works with any auth method.")
+                        Text("运行 `claude /usage` 命令。支持任何认证方式。")
                             .font(.system(size: 9, weight: .medium, design: theme.fontDesign))
                             .foregroundStyle(theme.textTertiary)
                     }
@@ -153,7 +153,7 @@ struct ClaudeConfigCard: View {
                             .font(.system(size: 10, weight: .semibold, design: theme.fontDesign))
                             .foregroundStyle(claudeProbeMode == .api ? theme.textPrimary : theme.textSecondary)
 
-                        Text("Calls Anthropic API directly. Faster, uses OAuth credentials.")
+                        Text("直接调用 Anthropic API。更快，使用 OAuth 凭据。")
                             .font(.system(size: 9, weight: .medium, design: theme.fontDesign))
                             .foregroundStyle(theme.textTertiary)
                     }
@@ -169,23 +169,23 @@ struct ClaudeConfigCard: View {
                         .font(.system(size: 10))
                         .foregroundStyle(hasCredentials ? theme.statusHealthy : theme.statusWarning)
 
-                    Text(hasCredentials ? "OAuth credentials found" : "No OAuth credentials found")
+                    Text(hasCredentials ? "已找到 OAuth 凭据" : "未找到 OAuth 凭据")
                         .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                         .foregroundStyle(hasCredentials ? theme.statusHealthy : theme.statusWarning)
                 }
 
                 if !hasCredentials {
-                    Text("Run `claude` in terminal to authenticate, then credentials will be available.")
+                    Text("在终端运行 `claude` 进行认证，之后凭据即可使用。")
                         .font(.system(size: 9, weight: .medium, design: theme.fontDesign))
                         .foregroundStyle(theme.textTertiary)
                 }
 
                 Toggle(isOn: $claudeCliFallbackEnabled) {
                     VStack(alignment: .leading, spacing: 2) {
-                        Text("CLI fallback")
+                        Text("CLI 回退")
                             .font(.system(size: 10, weight: .semibold, design: theme.fontDesign))
                             .foregroundStyle(theme.textPrimary)
-                        Text("Fall back to `claude /usage` if OAuth API is unavailable.")
+                        Text("当 OAuth API 不可用时回退到 `claude /usage`。")
                             .font(.system(size: 9, weight: .medium, design: theme.fontDesign))
                             .foregroundStyle(theme.textTertiary)
                     }
@@ -261,11 +261,11 @@ struct ClaudeConfigCard: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Claude API Budget")
+                Text("Claude API 预算")
                     .font(.system(size: 14, weight: .bold, design: theme.fontDesign))
                     .foregroundStyle(theme.textPrimary)
 
-                Text("Cost threshold warnings")
+                Text("费用阈值预警")
                     .font(.system(size: 10, weight: .medium, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
@@ -283,7 +283,7 @@ struct ClaudeConfigCard: View {
     private var budgetForm: some View {
         VStack(alignment: .leading, spacing: 14) {
             VStack(alignment: .leading, spacing: 6) {
-                Text("MONTHLY BUDGET (USD)")
+                Text("每月预算 (USD)")
                     .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(theme.textSecondary)
                     .tracking(0.5)
@@ -315,11 +315,11 @@ struct ClaudeConfigCard: View {
             }
 
             VStack(alignment: .leading, spacing: 4) {
-                Text("Get warnings when approaching your budget threshold.")
+                Text("接近预算阈值时发出预警。")
                     .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
 
-                Text("Only applies to Claude API accounts, not Claude Max.")
+                Text("仅适用于 Claude API 账号，不适用于 Claude Max。")
                     .font(.system(size: 9, weight: .semibold, design: theme.fontDesign))
                     .foregroundStyle(theme.textTertiary)
             }
